@@ -1,0 +1,32 @@
+---
+- name: Create Users
+  group: name=ccuser state=present
+
+-
+  user:
+    name: "{{zenoss_user}}"
+    state: present 
+    groups: wheel,ccuser
+    append: yes
+    password: "{{zenoss_passwd}}"
+
+- name: Create SSH User
+  user: 
+    name: sshmonitor
+    state: present
+    groups: serviced,ccuser
+    append: yes
+    password: "{{zenoss_passwd}}"
+
+- lineinfile:
+    path: /etc/sudoers
+    regexp: "^%wheel"
+    line: "%wheel  ALL=(ALL)  NOPASSWD: ALL"
+
+- debug:
+    msg:
+      - "Control Center User: {{zenoss_user}} Password: zenoss"
+      - "SSH User: sshmonitor Password: zenoss"
+
+
+

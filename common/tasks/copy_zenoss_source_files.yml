@@ -1,0 +1,3 @@
+---
+- name: Copy setup files to Server
+  copy: src=files/install/ dest=/root/install/ mode='0755'

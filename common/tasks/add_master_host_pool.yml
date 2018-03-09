@@ -1,0 +1,8 @@
+---
+- name: Start serviced
+  service: name=serviced  state=started  enabled=yes
+    
+- name: Add master host to resource pool
+  shell: serviced host add --register "{{ansible_hostname}}":4979 default
+
+  

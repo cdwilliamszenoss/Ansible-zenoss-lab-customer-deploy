@@ -1,0 +1,8 @@
+# Use the FQDN for each node 
+# Hostname on server will be set to the names listed in this file.
+
+[all]
+
+lab111.zenoss.sup
+
+

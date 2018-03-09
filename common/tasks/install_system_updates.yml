@@ -1,0 +1,28 @@
+---
+# systemd-logind and systemd-journald reports SIGABORT 
+# when doing system updates
+#
+- name: Disable firewalld
+  service: name=firewalld state=stopped enabled=no
+
+- name: Install System Updates
+  yum: name='*' state=latest 
+  register: system_update
+
+- name: Install ntp / nfs 
+  yum: name="{{item}}" state=latest
+  with_items:
+  - "ntp"
+  - "nfs-utils"
+  - "libnfsidmap"
+  
+- name: Start and enble ntpd / nfs-server
+  service: name="{{item}}" state=started enabled=yes
+  with_items:
+  - "ntpd"
+  - "rpcbind"
+  - "nfs-server"
+  - "rpc-statd"
+  - "nfs-idmapd"
+  
+
