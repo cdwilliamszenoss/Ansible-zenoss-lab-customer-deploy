@@ -5,7 +5,7 @@ Control Center / Resource Manager
 
 Reqirements:  SSH PUBLIC KEY AUTHENTICATION required for installation. (connect to server via ssh from workstation)
 
-Installation files downloaded from Zenoss ( listed in files-required-site-X.txt ) 
+Installation files downloaded from Zenoss - ( listed in files-required-site-[x].txt ) 
 
 OS - Redhat 7.4 
 
