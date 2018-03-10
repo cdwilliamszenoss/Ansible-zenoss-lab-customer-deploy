@@ -4,7 +4,7 @@
     path: /etc/default/serviced
     create: yes
     state: present
-    regexp: "{{ item.name }}"
+    regexp: "^{{ item.name }}"
     line: "{{ item.name }}={{ item.value }}"
   with_items:
   - { name: 'SERVICED_MASTER', value: '{{ serviced_master }}' }
