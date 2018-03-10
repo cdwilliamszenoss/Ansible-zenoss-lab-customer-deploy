@@ -17,6 +17,7 @@
      hd_device: xvdb
      serviced_master: 1
      serviced_dm_basesize: 30G
+     net_iface: ifcfg-eth0
 
      # Create partitions on system. Set size in GiB. Offset partsize
      # part1 = 1G
