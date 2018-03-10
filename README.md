@@ -3,13 +3,17 @@ Control Center / Resource Manager
 
 5.x.x and 6.x.x Zenoss Resource Manager.
 
-Reqirements:  SSH PUBLIC KEY AUTHENTICATION required for installation. (connect to server via ssh from workstation)
+Reqirements:
 
-Installation files downloaded from Zenoss - ( listed in files-required-site-[x].txt ) 
+SSH PUBLIC KEY AUTHENTICATION required for installation. (connect to server via ssh from workstation)
 
-OS - Redhat 7.4 
+Installation files downloaded from Zenoss. Listed in files-required-site-[5-6].txt  
 
-Second drive for Zenoss installation. Update device name in site-6.1.1.yml or site-5.3.3.yml.
+Server with Centos 7.4 OS
+
+Second drive for Zenoss installation. 
+
+Update site-configuration in site-6.1.1.yml or site-5.3.3.yml.
 
 ----
 
@@ -18,12 +22,14 @@ Step 1.
 Download repository to workstation. 
 
 Example:
+
 git clone git@github.com:cdwilliamszenoss/zenoss-lab-customer-deploy.git
 
 
 Install ansible on workstation.
 
 Example:
+
 yum install ansible
 
 ----
@@ -47,7 +53,8 @@ Step 3.
 Update hosts (FQDN) name in inventory file (located in repository directory downloaded on workstation).
 
 Example:
-vi $PATH/zenoss-customer-deploy/hosts
+
+vi $PATH/zenoss-lab-customer-deploy/hosts
 
 lab107.zenoss.sup
 
@@ -58,7 +65,7 @@ Step 4.
 Copy files listed in files-required-site-5.txt or files-required-site-6.txt to the install directory.
 (located in repository directory downloaded on workstation)
 
-$PATH/zenoss-customer-deploy/common/files/install 
+$PATH/zenoss-lab-customer-deploy/common/files/install 
 
 ----
 
@@ -66,11 +73,15 @@ Step 5.
 
 Select the version of Zenoss to install
 
-Example: ansible-playbook -i hosts site-5.3.3.yml
+Example:
+
+ansible-playbook -i hosts site-5.3.3.yml
 
 or
 
-Example: ansible-playbook -i hosts site-6.1.1.yml
+Example:
+
+ansible-playbook -i hosts site-6.1.1.yml
 
 
 Important Note:
