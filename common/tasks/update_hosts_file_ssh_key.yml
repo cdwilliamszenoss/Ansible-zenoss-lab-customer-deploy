@@ -26,7 +26,7 @@
 
 - name: Update network settings
   lineinfile:
-    path: /etc/sysconfig/network-scripts/"{{net_iface}}"
+    path: /etc/sysconfig/network-scripts/{{net_iface}}
     regexp: "^{{ item.name }}"
     line: "{{ item.name }}={{ item.value }}" 
   with_items:
