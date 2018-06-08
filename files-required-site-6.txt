@@ -3,7 +3,7 @@ Copy binaries to install directory:
 zenoss-lab-deploy/common/files/install/
 
 
-Core 6.0.1
+Resource Manager 6.0.1
 
 install-zenoss-hbase_24.0.8.run
 install-zenoss-isvcs-zookeeper_v10.run
@@ -16,7 +16,7 @@ zenoss-resmgr-service-6.0.1-1.noarch.rpm
 
 
 
-Core 6.1.0
+Resource Manager 6.1.0
 
 install-zenoss-hbase_24.0.8.run
 install-zenoss-isvcs-zookeeper_v10.run
@@ -28,7 +28,7 @@ yum-mirror-centos7.4.1708-serviced-1.5.0.x86_64.rpm
 zenoss-resmgr-service-6.1.0-1.noarch.rpm
 
 
-Core 6.1.1
+Resource Manager 6.1.1
 
 install-zenoss-hbase_24.0.8.run
 install-zenoss-isvcs-zookeeper_v10.run
@@ -39,3 +39,14 @@ serviced-1.5.0-1.x86_64.rpm
 yum-mirror-centos7.4.1708-serviced-1.5.0.x86_64.rpm
 zenoss-resmgr-service-6.1.1-1.noarch.rpm
 
+
+Resource Manager 6.1.2
+
+install-zenoss-hbase_24.0.8.run
+install-zenoss-isvcs-zookeeper_v10.run
+install-zenoss-opentsdb_24.0.8.run
+install-zenoss-resmgr_6.1_6.1.2_1.run
+install-zenoss-serviced-isvcs_v61.run
+serviced-1.5.0-1.x86_64.rpm
+yum-mirror-centos7.4.1708-serviced-1.5.0.x86_64.rpm
+zenoss-resmgr-service-6.1.2-1.noarch.rpm
