@@ -5,7 +5,7 @@ Control Center / Resource Manager
 
 Reqirements:
 
-SSH PUBLIC KEY AUTHENTICATION required for installation. (connect to server via ssh from workstation)
+SSH PUBLIC KEY AUTHENTICATION required for installation. (connect to server via ssh from ansible managment workstation)
 
 Installation files downloaded from Zenoss. Listed in files-required-site-[5-6].txt  
 
