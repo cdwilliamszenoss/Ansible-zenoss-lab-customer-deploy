@@ -38,11 +38,11 @@ Step 2.
 
 Modify the site-6.1.1.yml or site-5.3.3.yml to update DNS ip address, harddrive name for Zenoss installation.
 
-(optional):
+optional:
 
 Set partition creation size.
 
-(optional):
+optional:
 
 Set partiton ID to use for specific service. 
  
