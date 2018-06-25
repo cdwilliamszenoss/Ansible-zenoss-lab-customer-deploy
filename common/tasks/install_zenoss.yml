@@ -6,7 +6,7 @@
     
 - name: Install "{{docker}}"
   yum:
-    disablerepo: "*"
+    # disablerepo: "*"
     enablerepo: "{{repo_name}}"
     name: "/opt/zenoss-repo-mirror/{{docker}}"
     state: present
