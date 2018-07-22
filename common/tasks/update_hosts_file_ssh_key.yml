@@ -24,40 +24,39 @@
     regexp: "^{{ansible_default_ipv4.address}}"
     line: "{{ansible_default_ipv4.address}} {{inventory_hostname}}" 
 
-- name: Update network settings
-  lineinfile:
-    path: /etc/sysconfig/network-scripts/{{net_iface}}
-    regexp: "^{{ item.name }}"
-    line: "{{ item.name }}={{ item.value }}" 
-  with_items:
-  - { name: "IPADDR", value: "{{ ansible_default_ipv4.address }}" }
-  - { name: "NETMASK", value: "{{ ansible_default_ipv4.netmask }}" }
-  - { name: "GATEWAY", value: "{{ ansible_default_ipv4.gateway }}" }
-  - { name: "HWADDR", value: "{{ ansible_default_ipv4.macaddress }}" }    
-  - { name: "DNS1", value: "{{dns_server}}" }
-  - { name: "IPV4_FAILURE_FATAL", value: "no" }
-  - { name: "BOOTPROTO", value: "static" }
-  - { name: "NM_CONTROLLED", value: "no" }
-  - { name: "DEFROUTE", value: "YES" }
- # - { name: "PREFIX0", value: "23" }
-  - { name: "IPV6INIT", value: "yes" }
-  - { name: "IPV6_AUTOCONF", value: "yes" }
-  - { name: "IPV6_DEFROUTE", value: "yes"}
-  - { name: "IPV6_FAILURE_FATAL", value: "no"}
-  - { name: "IPV6_PEERDNS", value: "yes"}
-  - { name: "IPV6_PEERROUTES", value: "yes"}
+#- name: Update network settings
+#  lineinfile:
+#    path: /etc/sysconfig/network-scripts/{{net_iface}}
+#    regexp: "^{{ item.name }}"
+#    line: "{{ item.name }}={{ item.value }}" 
+#  with_items:
+#  - { name: "IPADDR", value: "{{ ansible_default_ipv4.address }}" }
+#  - { name: "NETMASK", value: "{{ ansible_default_ipv4.netmask }}" }
+#  - { name: "GATEWAY", value: "{{ ansible_default_ipv4.gateway }}" }
+#  - { name: "HWADDR", value: "{{ ansible_default_ipv4.macaddress }}" }    
+#  - { name: "DNS1", value: "{{dns_server}}" }
+#  - { name: "IPV4_FAILURE_FATAL", value: "no" }
+#  - { name: "BOOTPROTO", value: "static" }
+#  - { name: "NM_CONTROLLED", value: "no" }
+#  - { name: "DEFROUTE", value: "YES" }
+#  - { name: "IPV6INIT", value: "yes" }
+#  - { name: "IPV6_AUTOCONF", value: "yes" }
+#  - { name: "IPV6_DEFROUTE", value: "yes"}
+#  - { name: "IPV6_FAILURE_FATAL", value: "no"}
+#  - { name: "IPV6_PEERDNS", value: "yes"}
+#  - { name: "IPV6_PEERROUTES", value: "yes"}
 
-  register: networksettings
+#  register: networksettings
 
 
-- name: Reboot host
-  shell: shutdown -r
-  when: networksettings.changed 
+#- name: Reboot host
+#  shell: shutdown -r
+#  when: networksettings.changed 
 
-- pause: seconds=250
-  when: networksettings.changed 
+#- pause: seconds=250
+#  when: networksettings.changed 
 
-- local_action: shell ansible -u "{{ansible_user}}" -m ping "{{ inventory_hostname}}"
-  register: result
-  until: result.rc == 0
+#- local_action: shell ansible -u "{{ansible_user}}" -m ping "{{ inventory_hostname}}"
+#  register: result
+#  until: result.rc == 0
 
