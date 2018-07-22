@@ -13,11 +13,11 @@
      repo_name: zenoss-mirror
 
      # Site specific configuration
-     dns_server: 10.87.113.13
+     # dns_server: 10.87.113.13
      hd_device: xvdb
      serviced_master: 1
      serviced_dm_basesize: 30G
-     net_iface: ifcfg-eth0
+     # net_iface: ifcfg-eth0
      
      
      # Partid identifies which partition to use for service. 
