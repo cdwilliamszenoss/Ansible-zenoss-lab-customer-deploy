@@ -24,6 +24,7 @@
     regexp: "^{{ansible_default_ipv4.address}}"
     line: "{{ansible_default_ipv4.address}} {{inventory_hostname}}" 
 
+
 #- name: Update network settings
 #  lineinfile:
 #    path: /etc/sysconfig/network-scripts/{{net_iface}}
