@@ -6,6 +6,6 @@
 
 [all]
 
-lab111.zenoss.sup
+lab111.zenoss.sup ansible_host=172.19.47.85
 
 
