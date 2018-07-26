@@ -1,6 +1,9 @@
 # Use the FQDN for each node 
 # Hostname on server will be set to the names listed in this file.
 
+# This directive will set the hostname when connecting to the server with an IP address.
+# some_hostname ansible_host=172.19.47.85 ansible_port=5555
+
 [all]
 
 lab111.zenoss.sup
