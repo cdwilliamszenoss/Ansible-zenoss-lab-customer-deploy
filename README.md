@@ -22,8 +22,7 @@ Download repository to workstation.
 
 Example:
 
-git clone git@github.com:cdwilliamszenoss/zenoss-lab-customer-deploy.git
-
+git clone https://github.com/cdwilliamszenoss/zenoss-lab-customer-deploy.git
 
 Install ansible on workstation.
 
