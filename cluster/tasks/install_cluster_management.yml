@@ -1,0 +1,22 @@
+- name: Find All Cluster RPMs
+  find:
+    paths: "/tmp/downloads"
+    patterns: "*.rpm"
+  register: rpm_result
+
+- name: Install All Cluster RPMs
+  yum:
+    name: "{{ item.path }}"
+    state: present
+  with_items: "{{ rpm_result.files }}"
+
+- name: Install Pacemaker resource agents
+  yum:
+    name: "/root/install/serviced-resource-agents-1.1.0-1.x86_64.rpm"
+    state: present
+
+- name: Start and enable the PCS daemon
+  service:
+    name: pcsd.service
+    state: started
+    enabled: yes

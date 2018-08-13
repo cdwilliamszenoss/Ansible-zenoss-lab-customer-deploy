@@ -1,0 +1,27 @@
+---
+- name: Install "{{yum_mirror}}"
+  yum:
+    name: "/root/install/{{yum_mirror}}"
+    state: present
+    
+- name: Install "{{docker}}"
+  yum:
+    # disablerepo: "*"
+    enablerepo: "{{repo_name}}"
+    name: "/opt/zenoss-repo-mirror/{{docker}}"
+    state: present
+    
+- name: Install "{{serviced}}"
+  yum:
+    name: "/root/install/{{serviced}}"
+    state: present   
+
+- name: Install "{{resmgr_service}}" 
+  yum:
+    name: "/root/install/{{resmgr_service}}"
+    state: present
+
+  notify: daemon-reload 
+
+- meta: flush_handlers
+
