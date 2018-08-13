@@ -1,0 +1,17 @@
+---
+- name: Create directories on system
+  file: path="{{item}}" state=directory
+  with_items:
+  - "/var/log/journal"
+  - "/opt/serviced/var/backups"
+  - "/opt/serviced/var/isvcs"
+  - "/var/log/serviced"
+  - "/var/lib/docker"
+  - "/etc/systemd/system/docker.service.d"
+  - "/etc/systemd/system/nfs-server.service.d"
+  - "/tmp/downloads"
+
+
+  notify: daemon-reload
+
+- meta: flush_handlers

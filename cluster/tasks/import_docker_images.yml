@@ -1,0 +1,5 @@
+---
+
+- name: Import Docker Images
+  shell: for i in install/*.run; do  yes | $i; done
+

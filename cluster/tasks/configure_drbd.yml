@@ -1,0 +1,5 @@
+- name: Configure /etc/drbd.d/global_common.conf
+  lineinfile:
+    path: /etc/lvm/lvm.conf
+    regexp: "^# filter = [ "a|.*/|" ]"
+    line: "filter = ["r|/dev/xvdb3|"]"

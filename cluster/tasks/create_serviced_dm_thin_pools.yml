@@ -1,0 +1,4 @@
+---
+- name: Create_serviced_dm_thin_pools
+  shell: serviced-storage create-thin-pool serviced /dev/{{hd_device}}{{serviced_partid}}
+   
