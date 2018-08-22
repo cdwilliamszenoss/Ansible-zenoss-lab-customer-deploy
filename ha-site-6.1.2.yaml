@@ -1,6 +1,6 @@
 ---
 - name: Apply common configuration to all hosts
-  hosts: all
+  hosts: [lab]
   remote_user: root
 
   vars:
@@ -14,7 +14,7 @@
 
      # Site specific configuration
      # dns_server: 10.87.113.13
-     hd_device: xvdb
+     hd_device: xvda
      serviced_master: 1
      serviced_dm_basesize: 30G
      # net_iface: ifcfg-eth0
@@ -23,13 +23,13 @@
      # Partid identifies which partition to use for service.
 
      # Use ha_metadata for HA configuration. Default 1G
-     ha_metadata_partid: 1
+     ha_metadata_partid: 4
      # set partid2 for isvcs
-     isvcs_partid: 2
+     isvcs_partid: 5
      # set partid3 for serviced pool
-     serviced_partid: 3
+     serviced_partid: 6
      # set partid4 for docker pool
-     docker_partid: 4
+     docker_partid: 7
 
 
      # Create partitions on system. Set size in GiB. Offset partsize
@@ -37,10 +37,10 @@
      # part2 = 30G
      # part3 = 40G
      # part4 = 30G
-     partid_1_size_offset: 1GiB
-     partid_2_size_offset: 31GiB
-     partid_3_size_offset: 71GiB
-     partid_4_size_offset: 101GiB
+     partid_4_size_offset: 55GB
+     partid_5_size_offset: 85GB
+     partid_6_size_offset: 135GB
+     partid_7_size_offset: 165GB
 
 
      # Authentication

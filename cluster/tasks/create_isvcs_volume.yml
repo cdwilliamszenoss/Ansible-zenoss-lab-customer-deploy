@@ -10,7 +10,7 @@
     size: 100%FREE
 
 -
-  shell: umount -f /dev/mapper/isvcs-isvcs
+  shell: umount -f /opt/serviced/var/isvcs
   failed_when: false
   no_log: True
 

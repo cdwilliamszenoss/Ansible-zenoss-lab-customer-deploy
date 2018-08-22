@@ -17,7 +17,8 @@
     append: yes
     password: "{{zenoss_passwd}}"
 
-- lineinfile:
+- name: Update sudoers file
+  lineinfile:
     path: /etc/sudoers
     regexp: "^%wheel"
     line: "%wheel  ALL=(ALL)  NOPASSWD: ALL"

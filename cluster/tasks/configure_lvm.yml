@@ -1,6 +1,4 @@
 - name: Update LVM filter
-  tags:
-  - debug
   lineinfile:
     path: /etc/lvm/lvm.conf
     regexp: ^(\s)*# filter = \[ \"a\|\.\*\/\|\" \](\s)$
@@ -9,8 +7,6 @@
     backup: yes
 
 - name: Update lvm write_cache_state
-  tags:
-  - debug
   lineinfile:
     path: /etc/lvm/lvm.conf
     regexp: ^\swrite_cache_state = 1$
@@ -18,8 +14,6 @@
     backup: yes
 
 - name: Update lvm use_lvmetad
-  tags:
-  - debug
   lineinfile:
     path: /etc/lvm/lvm.conf
     regexp: ^\suse_lvmetad = 1

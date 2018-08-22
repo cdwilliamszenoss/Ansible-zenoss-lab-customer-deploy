@@ -2,10 +2,23 @@
 # Hostname on server will be set to the names listed in this file.
 
 # This directive will set the hostname when connecting to the server with an IP address.
-# some_hostname ansible_host=172.19.47.85 ansible_port=5555
+# some_hostname ansible_host=127.19.47.85 ansible_port=5555
 
-[all]
+[lab]
 
-#lab111.zenoss.sup ansible_host=172.19.47.85
-lab106.zenoss.sup
-lab176.zenoss.sup
+#lab111.zenoss.sup ansible_host=127.19.47.85
+lab150.zenoss.sup
+lab127.zenoss.sup
+
+[cluster_group]
+ccm ansible_ssh_host=10.90.36.150 hostname=lab150.zenoss.sup
+ccs ansible_ssh_host=10.90.36.127 hostname=lab127.zenoss.sup
+
+#[master]
+#ccm ansible_ssh_host=10.90.36.150 hostname=lab150.zenoss.sup
+
+#[slave]
+#ccs ansible_ssh_host=10.90.36.127 hostname=lab127.zenoss.sup
+
+[vip]
+ccv ansible_ssh_host=10.90.36.225 hostname=lab225.zenoss.sup

@@ -1,5 +1,7 @@
 ---
 - name: Update /etc/default/serviced
+  tags:
+  - debug
   lineinfile:
     path: /etc/default/serviced
     create: yes
@@ -7,16 +9,17 @@
     regexp: "^{{ item.name }}"
     line: "{{ item.name }}={{ item.value }}"
   with_items:
-  - { name: 'SERVICED_MASTER', value: '{{ serviced_master }}' }
-  - { name: 'SERVICED_MASTER_IP', value: '{{ inventory_hostname }}' }
+  - { name: 'SERVICED_MASTER', value: "{{ serviced_master }}" }
+  - { name: 'SERVICED_MASTER_IP', value: "{{ hostvars['ccv'].ansible_ssh_host }}" }
+  - { name: 'SERVICED_OUTBOUND_IP', value: "{{ hostvars['ccv'].ansible_ssh_host}}" }
   - { name: 'SERVICED_SNAPSHOT', value: '0' }
   - { name: 'SERVICED_DM_BASESIZE', value: '{{ serviced_dm_basesize }}' }
-  - { name: 'SERVICED_ZK', value: '{{ inventory_hostname }}:2181'}
-  - { name: 'SERVICED_ENDPOINT', value: '{{ inventory_hostname }}:4979' }
-  - { name: 'SERVICED_DOCKER_REGISTRY', value: '{{ inventory_hostname }}:5000'}
-  - { name: 'SERVICED_LOG_ADDRESS', value: '{{ inventory_hostname }}:5042' }
-  - { name: 'SERVICED_LOGSTASH_ES', value: '{{ inventory_hostname }}:9100 '}
-  - { name: 'SERVICED_STATS_PORT', value: '{{ inventory_hostname }}:8443'}
+  - { name: 'SERVICED_ZK', value: "{{ hostvars['ccv'].ansible_ssh_host }}:2181"}
+  - { name: 'SERVICED_ENDPOINT', value: "{{ hostvars['ccv'].ansible_ssh_host }}:4979" }
+  - { name: 'SERVICED_DOCKER_REGISTRY', value: "{{ hostvars['ccv'].ansible_ssh_host }}:5000"}
+  - { name: 'SERVICED_LOG_ADDRESS', value: "{{ hostvars['ccv'].ansible_ssh_host }}:5042" }
+  - { name: 'SERVICED_LOGSTASH_ES', value: "{{ hostvars['ccv'].ansible_ssh_host }}:9100 "}
+  - { name: 'SERVICED_STATS_PORT', value: "{{ hostvars['ccv'].ansible_ssh_host }}:8443"}
   - { name: 'SERVICED_FS_TYPE', value: 'devicemapper'}
   - { name: 'SERVICED_DM_THINPOOLDEV', value: '/dev/mapper/serviced-serviced--pool'}
   - { name: 'SERVICED_ADMIN_GROUP', value: 'ccuser'}

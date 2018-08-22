@@ -7,7 +7,7 @@
     path: /etc/sysconfig/docker
     regexp: '^OPTIONS'
 #    line: 'OPTIONS="--log-level=error --storage-driver devicemapper --exec-opt native.cgroupdriver=cgroupfs --storage-opt dm.mountopt=discard --storage-opt dm.thinpooldev=/dev/mapper/docker-docker--pool --dns={{docker_dns.stdout}} --bip={{docker_bip.stdout}}"'
-    line: 'OPTIONS="--log-level=error --insecure-registry={{ inventory_hostname }}:5000 --storage-driver devicemapper --exec-opt native.cgroupdriver=cgroupfs --storage-opt dm.mountopt=discard --storage-opt dm.thinpooldev=/dev/mapper/docker-docker--pool --dns=172.17.0.1 --bip=172.17.0.1/16"'
+    line: "OPTIONS=\"--log-level=error --insecure-registry={{ hostvars['ccv'].ansible_ssh_host }}:5000 --storage-driver devicemapper --exec-opt native.cgroupdriver=cgroupfs --storage-opt dm.mountopt=discard --storage-opt dm.thinpooldev=/dev/mapper/docker-docker--pool --dns=172.17.0.1 --bip=172.17.0.1/16\""
 
 - name: Create_thin_pools_docker
   shell: serviced-storage create-thin-pool docker /dev/{{hd_device}}{{docker_partid}}
