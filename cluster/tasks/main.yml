@@ -4,8 +4,8 @@
 - name: Server hostname/ssh setup
   include: update_hosts_file_ssh_key.yml
 
-- name: Delete partitions
-  include: delete_partitions.yml
+#- name: Delete partitions
+#  include: delete_partitions.yml
 
 - name: Install system packages and updates
   include: install_system_updates.yml
@@ -19,8 +19,9 @@
 - name: Create partitions
   include: create_partitions.yml
 
-- name: Create isvcs volume
-  include: create_isvcs_volume.yml
+# Not needed for clusters
+#- name: Create isvcs volume
+#  include: create_isvcs_volume.yml
 
 - name: Install Zenoss
   include: install_zenoss.yml
@@ -37,11 +38,11 @@
 - name: Stop docker service
   include: stop_docker_service.yml
 
-#- name: Create_serviced_dm_thin_pools
-#  include: create_serviced_dm_thin_pools.yml
-
 - name: Install Cluster Management
   include: install_cluster_management.yml
+
+- name: set Cluster User password
+  include: cluster_user_password.yml
 
 - name: Configure Logical Volume Manager
   include: configure_lvm.yml
@@ -49,8 +50,14 @@
 #- name: Reboot server
 #  include: reboot_server.yml
 
-#- name: Configure DRBD
-#  include: configure_drbd.yml
+- name: Configure DRBD
+  include: configure_drbd.yml
+
+- name: Create XFS Filesystems
+  include: create_xfs_filesystems.yml
+
+- name: Create_serviced_dm_thin_pools
+  include: create_serviced_dm_thin_pools.yml
 
 - name: Update services_config
   include: services_config.yml
@@ -58,5 +65,11 @@
 - name: Create User
   include: create_user.yml
 
-#- name: Add Master Host
-#  include: add_master_host_pool.yml
+- name: Deactivate serviced VG
+  include: deactivate_serviced_vg.yml
+
+- name: Stop DRBD
+  include: stop_drbd.yml
+
+- name: create cluster in standby
+  include: create_cluster.yml

@@ -1,5 +1,32 @@
 - name: Configure /etc/drbd.d/global_common.conf
   lineinfile:
-    path: /etc/lvm/lvm.conf
-    regexp: "^# filter = [ "a|.*/|" ]"
-    line: "filter = ["r|/dev/xvdb3|"]"
+    path: /etc/drbd.d/global_common.conf
+    regexp: ^(\s)net \{$
+    insertafter: ^(\s)net \{$
+    line: "\tnet {\n\t\tprotocol C;"
+    backup: yes
+
+- name: Create serviced-dfs.res
+  template:
+    src: cluster/files/cluster_resource_definition.j2
+    dest: /etc/drbd.d/serviced-dfs.res
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create device metadata and enable DRBD resource
+  shell: drbdadm create-md all && drbdadm up all
+
+- name: Initialize DRBD
+  when: inventory_hostname in groups['master']
+  shell: drbdadm primary --force serviced-dfs
+
+- name: Synchronize DRBD
+  command: bash -c 'grep -c "UpToDate/UpToDate" /proc/drbd'
+  register: drbd_status
+  until: drbd_status.stdout == "3"
+  retries: 360
+  delay: 10
+
+- name: DRBD Synchronized
+  shell: echo "DRBD Synchronized"

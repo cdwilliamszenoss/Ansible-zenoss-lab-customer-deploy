@@ -6,7 +6,7 @@
 
 - name: Install All Cluster RPMs
   yum:
-    name: "{{rpm_result.files | map(attribute='path'|list}}"
+    name: "{{rpm_result.files | map(attribute='path')|list}}"
 
 - name: Install Pacemaker resource agents
   yum:

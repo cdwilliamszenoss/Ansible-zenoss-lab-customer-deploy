@@ -60,14 +60,14 @@
 
 
 # Read device information (always use unit when probing)
-- name: Delete Partitions
-  parted: device=/dev/{{hd_device}} unit=MiB
-  register: sdb_info
+#- name: Delete Partitions
+#  parted: device=/dev/{{hd_device}} unit=MiB
+#  register: sdb_info
 
 # Remove all partitions from disk
-- parted:
-    device: /dev/{{hd_device}}
-    number: "{{ item.num }}"
-    state: absent
-  with_items:
-  - "{{ sdb_info.partitions }}"
+#- parted:
+#    device: /dev/{{hd_device}}
+#    number: "{{ item.num }}"
+#    state: absent
+#  with_items:
+#  - "{{ sdb_info.partitions }}"
