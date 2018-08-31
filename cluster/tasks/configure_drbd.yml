@@ -18,14 +18,15 @@
   shell: drbdadm create-md all && drbdadm up all
 
 - name: Initialize DRBD
-  when: inventory_hostname in groups['cluster_group'][0]
+  when: inventory_hostname in groups['master']
   shell: drbdadm primary --force serviced-dfs
 
 - name: Synchronize DRBD
-  when: inventory_hostname in groups['cluster_group'][0]
-  command: bash -c 'cat /proc/drbd|grep -c "UpToDate/UpToDate"'
+  command: bash -c 'grep -c "UpToDate/UpToDate" /proc/drbd'
   register: drbd_status
+  until: drbd_status.stdout == "3"
+  retries: 360
+  delay: 10
 
-- name: Synchronization of DRBD Complete
-  when: drbd_status == "3"
-  shell: bash -c 'drbd-overview|grep -c "UpToDate/UpToDate"'
+- name: DRBD Synchronized
+  shell: echo "DRBD Synchronized"

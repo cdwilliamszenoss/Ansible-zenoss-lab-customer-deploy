@@ -24,10 +24,10 @@
     #label: gpt
 
   with_items:
-  - { num: "{{ ha_metadata_partid }}", pstart: "54GB", pend: "{{ partid_4_size_offset }}" }
-  - { num: "{{ isvcs_partid }}", pstart: "{{ partid_4_size_offset }}", pend: "{{ partid_5_size_offset }}"  }
-  - { num: "{{ serviced_partid }}", pstart: "{{ partid_5_size_offset }}", pend: "{{  partid_6_size_offset }}" }
-  - { num: "{{ docker_partid }}", pstart: "{{ partid_6_size_offset }}", pend: "{{ partid_7_size_offset }}" }
+  - { num: "{{ ha_metadata_partid }}", pstart: "54GB", pend: "{{ partid_5_size_offset }}" }
+  - { num: "{{ isvcs_partid }}", pstart: "{{ partid_5_size_offset }}", pend: "{{ partid_6_size_offset }}"  }
+  - { num: "{{ serviced_partid }}", pstart: "{{ partid_6_size_offset }}", pend: "{{  partid_7_size_offset }}" }
+  - { num: "{{ docker_partid }}", pstart: "{{ partid_7_size_offset }}", pend: "{{ partid_8_size_offset }}" }
  
 
 

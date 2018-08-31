@@ -27,3 +27,9 @@
     msg:
       - "Control Center User: {{zenoss_user}} Password: zenoss"
       - "SSH User: sshmonitor Password: zenoss"
+
+- name: Cluster User
+  user:
+    name: hacluster
+    password: "{{hacluster_password}}"
+    state: present

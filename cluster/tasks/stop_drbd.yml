@@ -1,0 +1,2 @@
+- name: drbdadm down all
+  shell: drbdadm down all

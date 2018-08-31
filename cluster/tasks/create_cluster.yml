@@ -1,0 +1,89 @@
+- include_vars: hacluster.yml
+
+- name: Auth cluster members
+  when: inventory_hostname in groups['master']
+  shell: pcs cluster auth {{ hostvars['ccm'].hostname }} {{ hostvars['ccs'].hostname }} -u hacluster -p "{{ hapassword }}"
+
+- name: Generate initial cluster definition
+  shell: pcs cluster setup --name serviced-ha {{ hostvars['ccm'].hostname }} {{ hostvars['ccs'].hostname }}
+
+- name: Start PCS
+  shell: pcs cluster start --all
+
+- name: Standby Cluster
+  when: inventory_hostname in groups['master']
+  shell:  pcs cluster standby --all
+
+- name: Enable corosync service
+  service: name="corosync" state=started enabled=yes
+
+- name: Enable pacemaker service
+  service: name="pacemaker" state=started enabled=yes
+
+- name: pcs resource property defaults
+  shell: pcs resource defaults resource-stickiness=100 && pcs property set no-quorum-policy=ignore && pcs property set stonith-enabled=false
+
+- name: Define a resource for DBRD device
+  when: inventory_hostname in groups['master']
+  shell: pcs resource create DFS ocf:linbit:drbd drbd_resource=serviced-dfs op monitor interval=30s role=Master op monitor interval=60s role=Slave
+
+- name: Define a clone of resource
+  when: inventory_hostname in groups['master']
+  shell: pcs resource master DFSMaster DFS master-max=1 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+
+- name: Define isvcs Filesystem
+  when: inventory_hostname in groups['master']
+  shell: pcs resource create serviced-isvcs Filesystem device=/dev/drbd/by-res/serviced-dfs/0 directory=/opt/serviced/var/isvcs fstype=xfs
+
+- name: Define metadata Filesystem
+  when: inventory_hostname in groups['master']
+  shell: pcs resource create serviced-volumes Filesystem device=/dev/drbd/by-res/serviced-dfs/1 directory=/opt/serviced/var/volumes fstype=xfs
+
+- name: Define lvm for serviced
+  when: inventory_hostname in groups['master']
+  shell: pcs resource create serviced-lvm ocf:heartbeat:LVM volgrpname=serviced
+
+- name: Define storage resource for serviced
+  when: inventory_hostname in groups['master']
+  shell: pcs resource create serviced-storage ocf:zenoss:serviced-storage
+
+- name: Define VIP resource
+  when: inventory_hostname in groups['master']
+  shell: pcs resource create VirtualIP ocf:heartbeat:IPaddr2 ip={{ hostvars['ccv'].ansible_ssh_host }} cidr_netmask=32 op monitor interval=30s
+
+- name: Define Docker Resource
+  when: inventory_hostname in groups['master']
+  shell: pcs resource create docker systemd:docker
+
+- name: Disable Docker on startup
+  service: name="docker" state=stopped enabled=no
+
+- name: Define NFS resource
+  when: inventory_hostname in groups['master']
+  shell: pcs resource create nfs systemd:nfs
+
+- name: Fix NFS resource monitoring option
+  when: inventory_hostname in groups['master']
+  shell: pcs resource op remove nfs monitor interval=60 timeout=100 && pcs resource op add nfs monitor interval=0s timeout=100
+
+- name: Disable and stop NFS systemd service
+  service: name="nfs" state=stopped enabled=no
+
+- name: Define Control Center Resource
+  when: inventory_hostname in groups['master']
+  shell: pcs resource create serviced ocf:zenoss:serviced
+
+- name: Disable and stop serviced systemd service
+  service: name="serviced" state=stopped enabled=no
+
+- name: Create Control Center resource group
+  when: inventory_hostname in groups['master']
+  shell: pcs resource group add serviced-group serviced-isvcs serviced-volumes serviced-lvm serviced-storage VirtualIP docker nfs serviced
+
+- name: Define constraints for Control Center resource group
+  when: inventory_hostname in groups['master']
+  shell: pcs constraint colocation add serviced-group with DFSMaster INFINITY with-rsc-role=Master
+
+- name: Ensure serviced-group started after DFSMaster
+  when: inventory_hostname in groups['master']
+  shell: pcs constraint order promote DFSMaster then start serviced-group

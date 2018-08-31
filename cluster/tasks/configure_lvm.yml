@@ -3,7 +3,7 @@
     path: /etc/lvm/lvm.conf
     regexp: ^(\s)*# filter = \[ \"a\|\.\*\/\|\" \](\s)$
     insertafter: ^(\s)*# filter = \[ \"a\|\.\*\/\|\" \](\s)$
-    line: "\tfilter = [\"r|/dev/xvdb3|\"]"
+    line: "\tfilter = [\"r|/dev/{{ hd_device }}{{ serviced_partid }}|\"]"
     backup: yes
 
 - name: Update lvm write_cache_state

@@ -65,5 +65,11 @@
 - name: Create User
   include: create_user.yml
 
-#- name: Add Master Host
-#  include: add_master_host_pool.yml
+- name: Deactivate serviced VG
+  include: deactivate_serviced_vg.yml
+
+- name: Stop DRBD
+  include: stop_drbd.yml
+
+- name: create cluster in standby
+  include: create_cluster.yml

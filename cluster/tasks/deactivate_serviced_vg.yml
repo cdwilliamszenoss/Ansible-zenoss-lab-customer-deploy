@@ -1,0 +1,3 @@
+- name: Deactivate VG
+  when: inventory_hostname in groups['master']
+  shell: vgchange -an serviced
