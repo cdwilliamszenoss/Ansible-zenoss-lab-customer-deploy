@@ -14,7 +14,7 @@ Reqirements:
 - 110 GB free space on first disk with MSDOS Partition Table (will create partitions starting at 24GB).  
 
 
-(In progress: Second hard drive or (3) partitions for the installation. )
+- (In progress: Second hard drive or (3) partitions for the installation. )
 
 
 ----
