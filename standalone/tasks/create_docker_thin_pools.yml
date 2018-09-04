@@ -1,4 +1,7 @@
 ---
+- service: name=docker   state=stopped
+  failed_when: False
+  no_log: True
 
 - name: Create /etc/sysconfig/docker 
   lineinfile:
@@ -9,9 +12,14 @@
 #    line: 'OPTIONS="--log-level=error --storage-driver devicemapper --exec-opt native.cgroupdriver=cgroupfs --storage-opt dm.mountopt=discard --storage-opt dm.thinpooldev=/dev/mapper/docker-docker--pool --dns={{docker_dns.stdout}} --bip={{docker_bip.stdout}}"'
     line: 'OPTIONS="--log-level=error --insecure-registry={{ inventory_hostname }}:5000 --storage-driver devicemapper --exec-opt native.cgroupdriver=cgroupfs --storage-opt dm.mountopt=discard --storage-opt dm.thinpooldev=/dev/mapper/docker-docker--pool --dns=172.17.0.1 --bip=172.17.0.1/16"'
 
+- shell: dmsetup status /dev/mapper/docker-docker--pool
+  register: docker_pool_status
+
 - name: Create_thin_pools_docker
   shell: serviced-storage create-thin-pool docker /dev/{{hd_device}}{{docker_partid}}
+  when: docker_pool_status.failed
 
+  
   notify: daemon-reload
 
 - meta: flush_handlers

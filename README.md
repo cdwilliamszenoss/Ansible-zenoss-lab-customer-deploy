@@ -99,10 +99,8 @@ ansible-playbook -i hosts site-6.1.1.yml
 
 
 Important Note:
-     DO NOT USE ON YOUR EXISTING INSTANCES.
      
-     New installs only. Will NOT UPGRADE an existing installation.
-     It will delete all partitions on xvdb. 
+     This script will NOT UPGRADE an existing installation.
 
 
 
