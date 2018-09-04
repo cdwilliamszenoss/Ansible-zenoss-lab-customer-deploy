@@ -4,46 +4,9 @@
 - name: Server hostname/ssh setup
   include: update_hosts_file_ssh_key.yml
 
-- name: Delete partitions
-  include: delete_partitions.yml
-    
 - name: Install system packages and updates
   include: install_system_updates.yml
 
 - name: Copy Zenoss source files
   include: copy_zenoss_source_files.yml
-
-- name: Create install directories
-  include: create_directories.yml
-
-- name: Create partitions
-  include: create_partitions.yml
-
-- name: Create isvcs volume
-  include: create_isvcs_volume.yml
-
-- name: Install Zenoss
-  include: install_zenoss.yml
-
-- name: Copy config files
-  include: config_files.yml
-
-- name: Create_thin_pools_docker
-  include: create_docker_thin_pools.yml
-
-- name: Import docker images
-  include: import_docker_images.yml
-
-- name: Create_serviced_dm_thin_pools
-  include: create_serviced_dm_thin_pools.yml
-
-- name: Update services_config
-  include: services_config.yml
-
-- name: Create User
-  include: create_user.yml
-
-- name: Add Master Host
-  include: add_master_host_pool.yml
- 
 

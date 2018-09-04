@@ -32,11 +32,7 @@
      docker_partid: 8
 
 
-     # Create partitions on system. Set size in GiB. Offset partsize
-     # part1 = 1G
-     # part2 = 30G
-     # part3 = 40G
-     # part4 = 30G
+     # Create partitions on system. Set size in GB. Offset partsize
      partid_5_size_offset: 55GB
      partid_6_size_offset: 85GB
      partid_7_size_offset: 135GB
@@ -51,4 +47,5 @@
 
 
   roles:
+  - common
   - cluster

@@ -1,27 +1,11 @@
 ---
-# tasks file for common
-
-- name: Server hostname/ssh setup
-  include: update_hosts_file_ssh_key.yml
-
-#- name: Delete partitions
-#  include: delete_partitions.yml
-
-- name: Install system packages and updates
-  include: install_system_updates.yml
-
-- name: Copy Zenoss source files
-  include: copy_zenoss_source_files.yml
+# tasks file for hacluster
 
 - name: Create install directories
   include: create_directories.yml
 
 - name: Create partitions
   include: create_partitions.yml
-
-# Not needed for clusters
-#- name: Create isvcs volume
-#  include: create_isvcs_volume.yml
 
 - name: Install Zenoss
   include: install_zenoss.yml

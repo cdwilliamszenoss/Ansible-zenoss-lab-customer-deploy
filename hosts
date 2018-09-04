@@ -4,11 +4,14 @@
 # This directive will set the hostname when connecting to the server with an IP address.
 # some_hostname ansible_host=185.19.47.85 ansible_port=5555
 
-[lab]
+[standalone]
+lab109.zenoss.sup ansible_host=10.90.36.109
 
-#lab111.zenoss.sup ansible_host=185.19.47.85
+
+[lab]
 lab163.zenoss.sup
 lab185.zenoss.sup
+
 
 [cluster_group]
 ccm ansible_ssh_host=10.90.36.163 hostname=lab163.zenoss.sup
