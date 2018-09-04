@@ -5,13 +5,16 @@ Control Center / Resource Manager
 
 Reqirements:
 
-- SSH PUBLIC KEY AUTHENTICATION required for installation. (You should be able to connect to server via ssh without a password)
+- SSH PUBLIC KEY AUTHENTICATION required for installation. (You should be able to connect to the server via ssh without a password)
 
 - Downloaded files listed in files-required-site-[5-6].txt. Save the files to zenoss-lab-customer-deploy/common/files/install directory 
 
 - Server with Centos 7.4 OS
 
-- Second hard drive or (3) partitions for the installation. 
+- 110 GB free space on first disk with MSDOS Partition Table (will create partitions starting at 24GB).  
+
+
+(In progress: Second hard drive or (3) partitions for the installation. )
 
 
 ----
@@ -41,23 +44,7 @@ Modify the site-6.1.1.yml or site-5.3.3.yml
 
 optional:
 
-Set partition creation size.
-
-optional:
-
-Set partiton ID to use for specific service. 
-
-Note: Use existing partitions. 
-
-First, comment the following lines in the zenoss-lab-customer-deploy/common/tasks/main.yml with #  
-\- name: Delete partitions\
-  include: delete_partitions.yml
-
-\- name: Create partitions\
-  include: create_partitions.yml
-
-Second, modify the site-6.1.1.yml or site-5.3.3.yml 
-- Set the harddrive device name and partition ID where each service will be installed.
+Set partition size. (Use the offset to determine start/end of partition)
 
  
 ----
@@ -70,7 +57,8 @@ Example:
 
 vi $PATH/zenoss-lab-customer-deploy/hosts
 
-lab107.zenoss.sup
+[standalone]
+example1.somedomain.com ansible_host=10.103.1.2
 
 ----
 
