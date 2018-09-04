@@ -10,3 +10,6 @@
 - name: Copy Zenoss source files
   include: copy_zenoss_source_files.yml
 
+- name: Create Partitions
+  include: create_partitions.yml
+

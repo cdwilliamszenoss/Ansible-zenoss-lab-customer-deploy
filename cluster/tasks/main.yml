@@ -7,9 +7,6 @@
 - name: Create install directories
   include: create_directories.yml
 
-- name: Create partitions
-  include: create_partitions.yml
-
 - name: Install Zenoss
   include: install_zenoss.yml
 

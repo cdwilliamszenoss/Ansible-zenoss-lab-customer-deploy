@@ -1,16 +1,6 @@
 ---
 # tasks file for common
 
-- name: Create partitions
-  include: delete_partitions.yml
-  when: use_second_hd_device 
-- include: create_partitions.yml
-  when: use_second_hd_device
-
-  # Use hard drive on first drive
-- include: create_partitions_first_hd_device.yml
-  when: not use_second_hd_device
-
 - name: Create install directories
   include: create_directories.yml
 
