@@ -44,7 +44,7 @@ Modify the site-6.1.1.yml or site-5.3.3.yml
 
 optional:
 
-Set partition size. (Use the offset to determine start/end of partition)
+- Set partition size. (Use the offset to determine start/end of partition)
 
  
 ----
@@ -58,6 +58,7 @@ Example:
 vi $PATH/zenoss-lab-customer-deploy/hosts
 
 [standalone]
+
 example1.somedomain.com ansible_host=10.103.1.2
 
 ----
