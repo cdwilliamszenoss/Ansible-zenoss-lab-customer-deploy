@@ -1,4 +1,6 @@
 # Files to ignore
+*.retry
+hosts
 *.run
 *.rpm
 

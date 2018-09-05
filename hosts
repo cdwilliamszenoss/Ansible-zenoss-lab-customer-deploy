@@ -4,9 +4,9 @@
 # This directive will set the hostname when connecting to the server with an IP address.
 # some_hostname ansible_host=185.19.47.85 ansible_port=5555
 
-# Single host installs
+# Single host install
 [standalone]
-host0.domain.com ansible_host=10.103.1.100
+lab181.zenoss.sup ansible_host=10.90.36.181
 
 
 #Cluster hosts
