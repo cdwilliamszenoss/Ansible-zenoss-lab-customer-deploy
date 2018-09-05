@@ -29,7 +29,7 @@
   include: install_zenoss.yml
 
 - name: Copy config files
-  include: config_files.yml
+  include: copy_config_files.yml
 
 - name: Create_thin_pools_docker
   include: create_docker_thin_pools.yml

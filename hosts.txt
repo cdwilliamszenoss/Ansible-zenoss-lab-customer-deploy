@@ -6,7 +6,7 @@
 
 # Single host install
 [standalone]
-lab181.zenoss.sup ansible_host=10.90.36.181
+hosts0.domain.com ansible_host=10.102.1.100
 
 
 #Cluster hosts
