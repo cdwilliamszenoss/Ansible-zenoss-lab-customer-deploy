@@ -11,7 +11,7 @@ Reqirements:
 
 - Server with Centos 7.4 OS
 
-- Second hard drive or (3) partitions for the installation. 
+- Not working Second hard drive or (3) partitions for the installation. 
 
 
 ----

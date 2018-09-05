@@ -1,9 +1,13 @@
 ---
 - name: Apply common configuration to all hosts
-  hosts: all
+  hosts: [standalone]
   remote_user: root
 
   vars:
+     # Authentication
+     zenoss_user: zenoss
+     zenoss_passwd: $6$1uiZLcM8px06nO/A$oiP2xRk1i3iKLC.166gVlvVgYPH.spUqg8SIpdEWmOWDD4JofZwMWbPFQJgNzraGe0oX57DYPA7vG0MufrTn50
+
 
      # Packages
      yum_mirror: yum-mirror-centos7.4.1708-serviced-1.5.0.x86_64.rpm 
@@ -11,42 +15,33 @@
      serviced: serviced-1.5.0-1.x86_64.rpm
      docker: docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm
      repo_name: zenoss-mirror
+                               
 
      # Site specific configuration
      # dns_server: 10.87.113.13
-     hd_device: xvdb
      serviced_master: 1
      serviced_dm_basesize: 30G
      # net_iface: ifcfg-eth0
-     
-     
-     # Partid identifies which partition to use for service. 
 
-     # Use ha_metadata for HA configuration. Default 1G
-     ha_metadata_partid: 1
-     # set partid2 for isvcs
-     isvcs_partid: 2
-     # set partid3 for serviced pool
-     serviced_partid: 3
-     # set partid4 for docker pool
-     docker_partid: 4
-
-
-     # Create partitions on system. Set size in GiB. Offset partsize
-     # part1 = 1G
-     # part2 = 30G
-     # part3 = 40G
-     # part4 = 30G
-     partid_1_size_offset: 1GiB     
-     partid_2_size_offset: 31GiB
-     partid_3_size_offset: 71GiB
-     partid_4_size_offset: 101GiB
+     # set name of device for Zenoss install 
+     hd_device: xvda
  
+     # Set "true" if using a second hard drive for the installation
+     use_second_hd_device: false
 
-     # Authentication
-     zenoss_user: zenoss
-     zenoss_passwd: $6$1uiZLcM8px06nO/A$oiP2xRk1i3iKLC.166gVlvVgYPH.spUqg8SIpdEWmOWDD4JofZwMWbPFQJgNzraGe0oX57DYPA7vG0MufrTn50
+
+     ha_metadata_partid: 5
+     isvcs_partid: 6
+     serviced_partid: 7
+     docker_partid: 8
+
+
+     partid_start_offset:  24GB
+     partid_5_size_offset: 25GB
+     partid_6_size_offset: 55GB
+     partid_7_size_offset: 105GB
+     partid_8_size_offset: 135GB
+ 
 
   roles:
   - common
-
