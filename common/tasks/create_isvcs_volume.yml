@@ -1,4 +1,15 @@
 ---
+- shell: umount -f /dev/mapper/isvcs-isvcs
+  failed_when: false
+  no_log: True
+  notify: daemon-reload
+
+- meta: flush_handlers
+
+- service: name=serviced state=stopped
+  failed_when: False
+  no_log: True
+
 - name: Create Control Center internal services filesystem
   lvg:
     vg: isvcs 
@@ -8,21 +19,14 @@
     vg: isvcs
     lv: isvcs
     size: 100%FREE
-
--
-  shell: umount -f /dev/mapper/isvcs-isvcs
   failed_when: false
-  no_log: True
-
-  notify: daemon-reload
   
-- meta: flush_handlers
 
 - name: Create isvcs XFS filesystem
   filesystem: 
     fstype: xfs
     dev: /dev/mapper/isvcs-isvcs
-    force: yes
+    force: no
 
 
 - name: Update isvcs info in fstab
