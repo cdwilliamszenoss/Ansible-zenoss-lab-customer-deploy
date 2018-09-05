@@ -1,0 +1,29 @@
+# Use the FQDN for each node 
+# Hostname on server will be set to the names listed in this file.
+
+# This directive will set the hostname when connecting to the server with an IP address.
+# some_hostname ansible_host=185.19.47.85 ansible_port=5555
+
+# Single host install
+[standalone]
+lab181.zenoss.sup ansible_host=10.90.36.181
+
+
+#Cluster hosts
+[cluster]
+host1.domain.com
+host2.domain.com
+
+
+[cluster_group]
+ccm ansible_ssh_host=10.103.1.101 hostname=host1.domain.com
+ccs ansible_ssh_host=10.103.1.102 hostname=host2.domain.com
+
+[master]
+host1.domain.com
+
+[slave]
+host2.domain.com
+
+[vip]
+ccv ansible_ssh_host=10.103.1.103 hostname=host3.domain.com
