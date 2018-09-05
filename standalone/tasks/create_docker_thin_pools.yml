@@ -14,6 +14,9 @@
 
 - shell: dmsetup status /dev/mapper/docker-docker--pool
   register: docker_pool_status
+  failed_when: False
+  no_log: True
+
 
 - name: Create_thin_pools_docker
   shell: serviced-storage create-thin-pool docker /dev/{{hd_device}}{{docker_partid}}
