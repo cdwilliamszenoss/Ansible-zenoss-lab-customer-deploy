@@ -1,8 +1,6 @@
-- include_vars: hacluster.yml
-
 - name: Auth cluster members
   when: inventory_hostname in groups['master']
-  shell: pcs cluster auth {{ hostvars['ccm'].hostname }} {{ hostvars['ccs'].hostname }} -u hacluster -p "{{ hapassword }}"
+  shell: pcs cluster auth {{ hostvars['ccm'].hostname }} {{ hostvars['ccs'].hostname }} -u hacluster -p "zenoss"
 
 - name: Generate initial cluster definition
   shell: pcs cluster setup --name serviced-ha {{ hostvars['ccm'].hostname }} {{ hostvars['ccs'].hostname }}

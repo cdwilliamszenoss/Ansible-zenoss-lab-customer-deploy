@@ -31,5 +31,5 @@
 - name: Cluster User
   user:
     name: hacluster
-    password: "{{hacluster_password}}"
+    password: "zenoss"
     state: present

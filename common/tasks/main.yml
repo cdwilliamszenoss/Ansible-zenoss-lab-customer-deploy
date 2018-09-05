@@ -13,3 +13,5 @@
 - name: Create Partitions
   include: create_partitions.yml
 
+- name: Disable SELinux
+  include: disable_selinux.yml

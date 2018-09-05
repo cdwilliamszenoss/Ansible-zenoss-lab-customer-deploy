@@ -1,7 +1,7 @@
 ---
 # tasks file for hacluster
 
-- name: Install cluster packages 
+- name: Install cluster packages
   include: install_cluster_packages.yml
 
 - name: Create install directories
