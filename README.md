@@ -15,6 +15,11 @@ Reqirements:
 
 - ( Work In Progress: Second hard drive or (3) partitions for the installation. )
 
+
+NOTE:
+
+- This script will also install a Zenoss HA Cluster ( look at inventory hosts file).   
+
 ----
 
 Step 1. 
