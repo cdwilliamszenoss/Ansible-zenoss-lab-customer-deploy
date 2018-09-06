@@ -10,7 +10,7 @@ hosts0.domain.com ansible_host=10.102.1.100
 
 
 #Cluster hosts
-[cluster]
+[hacluster]
 host1.domain.com
 host2.domain.com
 
