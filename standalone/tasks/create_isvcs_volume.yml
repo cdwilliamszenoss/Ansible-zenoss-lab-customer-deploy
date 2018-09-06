@@ -10,22 +10,16 @@
   failed_when: False
   no_log: True
 
-- shell: dmsetup status /dev/mapper/isvcs-isvcs 
-  register: isvcs_pool_status
-  failed_when: false
-
-
 - name: Create Control Center internal services filesystem
   lvg:
     vg: isvcs 
     pvs: /dev/{{hd_device}}{{isvcs_partid}}
     state: present
-  when: isvcs_pool_status.rc == 1
 - lvol:
     vg: isvcs
     lv: isvcs
     size: 100%FREE
-  when: isvcs_pool_status.rc == 1
+  failed_when: false
   
 
 - name: Create isvcs XFS filesystem

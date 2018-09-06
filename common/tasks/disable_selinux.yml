@@ -1,0 +1,20 @@
+- name: Disable SELinux
+  lineinfile:
+      path: /etc/selinux/config
+      regexp: 'SELINUX=enforcing'
+      line: 'SELINUX=disabled'
+  register: selinux_enforcing
+
+- name: Reboot Server
+  shell: "sleep 5 && reboot"
+  async: 1
+  poll: 0
+  when: selinux_enforcing is changed
+
+- name: Wait for server online after reboot
+  wait_for_connection:
+    connection_timeout: 20
+    sleep: 5
+    delay: 5
+    timeout: 600
+  when: selinux_enforcing is changed

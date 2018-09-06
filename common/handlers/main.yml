@@ -4,9 +4,3 @@
 - name: daemon-reload
   shell: systemctl daemon-reload
 
-- name: restart docker
-  service: name=docker state=restarted
-
-- name: reboot-server
-  shell: shutdown -r now
-

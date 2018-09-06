@@ -1,0 +1,10 @@
+---
+# systemd-logind and systemd-journald reports SIGABORT
+# when doing system updates
+#
+
+- name: Download DRBD packages to the temporary directory
+  shell: repotrack -a x86_64 -r elrepo -p /tmp/downloads kmod-drbd84
+
+- name: Download Corosync/Pacemaker packages to the temporary directory
+  shell: repotrack -a x86_64 -p /tmp/downloads pcs

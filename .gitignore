@@ -2,4 +2,6 @@
 *.retry
 *.run
 *.rpm
-
+*.idea
+*.retry
+hosts

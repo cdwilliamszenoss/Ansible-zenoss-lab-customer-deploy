@@ -1,34 +1,6 @@
 ---
 # tasks file for common
 
-- name: Server hostname/ssh setup
-  include: update_hosts_file_ssh_key.yml
-
-<<<<<<< HEAD
-=======
-#- name: Delete partitions
-#  include: delete_partitions.yml
-
-#- name: Create partitions
-#  include: create_partitions.yml
-
-- name: Create partitions
-  include: create_partitions_standalone.yml
-    
->>>>>>> master
-- name: Install system packages and updates
-  include: install_system_updates.yml
-
-- name: Copy Zenoss source files
-  include: copy_zenoss_source_files.yml
-
-<<<<<<< HEAD
-- name: Create Partitions
-  include: create_partitions.yml
-
-- name: Disable SELinux
-  include: disable_selinux.yml
-=======
 - name: Create install directories
   include: create_directories.yml
 
@@ -60,4 +32,3 @@
   include: add_master_host_pool.yml
  
 
->>>>>>> master

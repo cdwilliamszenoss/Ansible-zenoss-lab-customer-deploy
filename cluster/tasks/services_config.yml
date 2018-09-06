@@ -1,0 +1,69 @@
+---
+- name: Update /etc/default/serviced
+  tags:
+  - debug
+  lineinfile:
+    path: /etc/default/serviced
+    create: yes
+    state: present
+    regexp: "^{{ item.name }}"
+    line: "{{ item.name }}={{ item.value }}"
+  with_items:
+  - { name: 'SERVICED_MASTER', value: "{{ serviced_master }}" }
+  - { name: 'SERVICED_MASTER_IP', value: "{{ hostvars['ccv'].ansible_ssh_host }}" }
+  - { name: 'SERVICED_OUTBOUND_IP', value: "{{ hostvars['ccv'].ansible_ssh_host}}" }
+  - { name: 'SERVICED_SNAPSHOT', value: '0' }
+  - { name: 'SERVICED_DM_BASESIZE', value: '{{ serviced_dm_basesize }}' }
+  - { name: 'SERVICED_ZK', value: "{{ hostvars['ccv'].ansible_ssh_host }}:2181"}
+  - { name: 'SERVICED_ENDPOINT', value: "{{ hostvars['ccv'].ansible_ssh_host }}:4979" }
+  - { name: 'SERVICED_DOCKER_REGISTRY', value: "{{ hostvars['ccv'].ansible_ssh_host }}:5000"}
+  - { name: 'SERVICED_LOG_ADDRESS', value: "{{ hostvars['ccv'].ansible_ssh_host }}:5042" }
+  - { name: 'SERVICED_LOGSTASH_ES', value: "{{ hostvars['ccv'].ansible_ssh_host }}:9100 "}
+  - { name: 'SERVICED_STATS_PORT', value: "{{ hostvars['ccv'].ansible_ssh_host }}:8443"}
+  - { name: 'SERVICED_FS_TYPE', value: 'devicemapper'}
+  - { name: 'SERVICED_DM_THINPOOLDEV', value: '/dev/mapper/serviced-serviced--pool'}
+  - { name: 'SERVICED_ADMIN_GROUP', value: 'ccuser'}
+  - { name: 'SERVICED_ALLOW_ROOT_LOGIN', value: '1'}
+
+- lineinfile:
+    path: /etc/default/serviced
+    regexp: "^{{ item }}"
+    line: "{{ item }}"
+  with_items:
+  - "#  Added for Zookeeper"
+  - "#SERVICED_ISVCS_ZOOKEEPER_ID=1"
+  - "# 0.0.0.0 identifies the current node"
+  - "#SERVICED_ISVCS_ZOOKEEPER_QUORUM=1@0.0.0.0:2888:3888,2@10.90.36.160:2888:3888,3@10.90.36.196:2888:3888"
+  - "#SERVICED_ZK_SESSION_TIMEOUT=15"
+  - "# Do not enable on Master"
+  - "#SERVICED_ISVCS_START=zookeeper"
+  - "# Add to all Delegates - ZooKeeper Quorum"
+  - "#SERVICED_ZK=10.90.36.153:2181,10.90.36.119:2181,10.90.36.196:2181"
+
+
+- name: Set NFS Defaultvers 4
+  lineinfile:
+    path: /etc/nfsmount.conf
+    regexp: "Defaultvers="
+    line: "Defaultvers=4.0"
+  register: set_ver4
+
+- name: Restart nfs service
+  service: name="nfs" state=restarted enabled=yes
+  when: set_ver4.changed
+
+
+- name: Enable dnsmasq service
+  service: name="dnsmasq" state=started enabled=yes
+
+
+- name : Restart Docker
+  service:
+    name: docker
+    state: restarted
+    enabled: yes
+
+
+  notify: daemon-reload
+
+- meta: flush_handlers

@@ -1,0 +1,11 @@
+- name: Create isvcs XFS FileSystem
+  filesystem:
+    fstype: xfs
+    dev: /dev/drbd0
+    force: yes
+
+- name: Create Metadata XFS FileSystem
+  filesystem:
+    fstype: xfs
+    dev: /dev/drbd1
+    force: yes

@@ -1,0 +1,59 @@
+---
+# tasks file for hacluster
+
+- name: Install cluster packages
+  include: install_cluster_packages.yml
+
+- name: Create install directories
+  include: create_directories.yml
+
+- name: Install Zenoss
+  include: install_zenoss.yml
+
+- name: Copy config files
+  include: config_files.yml
+
+- name: Create_thin_pools_docker
+  include: create_docker_thin_pools.yml
+
+- name: Import docker images
+  include: import_docker_images.yml
+
+- name: Stop docker service
+  include: stop_docker_service.yml
+
+- name: Install Cluster Management
+  include: install_cluster_management.yml
+
+- name: set Cluster User password
+  include: cluster_user_password.yml
+
+- name: Configure Logical Volume Manager
+  include: configure_lvm.yml
+
+#- name: Reboot server
+#  include: reboot_server.yml
+
+- name: Configure DRBD
+  include: configure_drbd.yml
+
+- name: Create XFS Filesystems
+  include: create_xfs_filesystems.yml
+
+- name: Create_serviced_dm_thin_pools
+  include: create_serviced_dm_thin_pools.yml
+
+- name: Update services_config
+  include: services_config.yml
+
+- name: Create User
+  include: create_user.yml
+
+- name: Deactivate serviced VG
+  include: deactivate_serviced_vg.yml
+
+- name: Stop DRBD
+  include: stop_drbd.yml
+
+- name: create cluster in standby
+  include: create_cluster.yml

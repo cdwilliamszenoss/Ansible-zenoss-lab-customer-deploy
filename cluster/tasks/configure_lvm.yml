@@ -1,0 +1,24 @@
+- name: Update LVM filter
+  lineinfile:
+    path: /etc/lvm/lvm.conf
+    regexp: ^(\s)*# filter = \[ \"a\|\.\*\/\|\" \](\s)$
+    insertafter: ^(\s)*# filter = \[ \"a\|\.\*\/\|\" \](\s)$
+    line: "\tfilter = [\"r|/dev/{{ hd_device }}{{ serviced_partid }}|\"]"
+    backup: yes
+
+- name: Update lvm write_cache_state
+  lineinfile:
+    path: /etc/lvm/lvm.conf
+    regexp: ^\swrite_cache_state = 1$
+    line: "\twrite_cache_state = 0"
+    backup: yes
+
+- name: Update lvm use_lvmetad
+  lineinfile:
+    path: /etc/lvm/lvm.conf
+    regexp: ^\suse_lvmetad = 1
+    line: "\tuse_lvmetad = 0"
+    backup: yes
+
+- name: Delete any stale LVM cache entries
+  shell: rm -f /etc/lvm/cache/.cache
