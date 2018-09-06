@@ -1,0 +1,10 @@
+---
+
+- shell: dmsetup status /dev/mapper/serviced-serviced--pool
+  register: serviced_pool_status
+  failed_when: false
+
+- name: Create_serviced_dm_thin_pools
+  shell: serviced-storage create-thin-pool serviced /dev/{{hd_device}}{{serviced_partid}}
+  when: serviced_pool_status.rc == 1
+   

@@ -45,4 +45,7 @@
 
   roles:
   - common
+<<<<<<< HEAD
   - standalone
+=======
+>>>>>>> master
