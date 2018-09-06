@@ -11,15 +11,9 @@ Reqirements:
 
 - Server with Centos 7.4 OS
 
-<<<<<<< HEAD
-- 110 GB free space on first disk with MSDOS Partition Table (will create partitions starting at 24GB).  
+- Default lab installation: Will create partitions on hard-drive with an MSDOS Partition Table (create partitions beginning at 24GB).  
 
-
-- (In progress: Second hard drive or (3) partitions for the installation. )
-=======
-- Not working Second hard drive or (3) partitions for the installation. 
->>>>>>> master
-
+- ( Work In Progress: Second hard drive or (3) partitions for the installation. )
 
 ----
 
@@ -35,7 +29,7 @@ Install ansible on workstation.
 
 Example:
 
-yum install ansible
+yum -y install ansible
 
 ----
 
@@ -55,7 +49,7 @@ optional:
 
 Step 3.
 
-Update hosts (FQDN) name in inventory file (located in repository directory downloaded on workstation).
+Add the hostname (FQDN) to inventory file hosts file (in downloaded repository directory).
 
 Example:
 
@@ -63,7 +57,7 @@ vi $PATH/zenoss-lab-customer-deploy/hosts
 
 [standalone]
 
-example1.somedomain.com ansible_host=10.103.1.2
+example1.somedomain.com 
 
 ----
 
