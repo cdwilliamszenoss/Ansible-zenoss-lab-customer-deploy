@@ -41,7 +41,7 @@ Example:
 
 vi cluster/vars/secrets.yml
 
-hacluster: "superSekretPassword"
+hapassword: "superSekretPassword"
 
 ---
 Step 3.
