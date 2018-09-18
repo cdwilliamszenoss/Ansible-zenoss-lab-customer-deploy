@@ -1,6 +1,8 @@
+- include_vars: secrets.yml
+
 - name: Auth cluster members
   when: inventory_hostname in groups['master']
-  shell: pcs cluster auth {{ hostvars['ccm'].hostname }} {{ hostvars['ccs'].hostname }} -u hacluster -p "zenoss"
+  shell: pcs cluster auth {{ hostvars['ccm'].hostname }} {{ hostvars['ccs'].hostname }} -u hacluster -p "{{ hapassword }}"
 
 - name: Generate initial cluster definition
   shell: pcs cluster setup --name serviced-ha {{ hostvars['ccm'].hostname }} {{ hostvars['ccs'].hostname }}
@@ -19,6 +21,7 @@
   service: name="pacemaker" state=started enabled=yes
 
 - name: pcs resource property defaults
+  when: inventory_hostname in groups['master']
   shell: pcs resource defaults resource-stickiness=100 && pcs property set no-quorum-policy=ignore && pcs property set stonith-enabled=false
 
 - name: Define a resource for DBRD device

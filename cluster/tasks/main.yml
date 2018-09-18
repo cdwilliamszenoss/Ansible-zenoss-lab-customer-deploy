@@ -1,6 +1,9 @@
 ---
 # tasks file for hacluster
 
+- name: Add Cluster entries to /etc/hosts
+  include: cluster_etc_hosts.yml
+
 - name: Install cluster packages
   include: install_cluster_packages.yml
 
@@ -25,14 +28,8 @@
 - name: Install Cluster Management
   include: install_cluster_management.yml
 
-- name: set Cluster User password
-  include: cluster_user_password.yml
-
 - name: Configure Logical Volume Manager
   include: configure_lvm.yml
-
-#- name: Reboot server
-#  include: reboot_server.yml
 
 - name: Configure DRBD
   include: configure_drbd.yml
@@ -54,6 +51,9 @@
 
 - name: Stop DRBD
   include: stop_drbd.yml
+
+- name: set Cluster User password
+  include: cluster_user_password.yml
 
 - name: create cluster in standby
   include: create_cluster.yml

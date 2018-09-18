@@ -1,3 +1,4 @@
 ---
 - name: Create_serviced_dm_thin_pools
+  when: inventory_hostname in groups['master']
   shell: serviced-storage create-thin-pool serviced /dev/drbd2
