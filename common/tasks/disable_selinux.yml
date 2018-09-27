@@ -15,4 +15,7 @@
     sleep: 5
     delay: 5
     timeout: 600
+    
+- shell: dhclient 
+
   when: selinux_enforcing.changed
