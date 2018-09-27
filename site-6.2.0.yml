@@ -33,11 +33,11 @@
      serviced_partid: 7
      docker_partid: 8
 
-     partid_start_offset:  24GB
-     partid_5_size_offset: 25GB     
-     partid_6_size_offset: 55GB
-     partid_7_size_offset: 105GB
-     partid_8_size_offset: 135GB
+     partid_start_offset:  55GB
+     partid_5_size_offset: 56GB     
+     partid_6_size_offset: 86GB
+     partid_7_size_offset: 116GB
+     partid_8_size_offset: 156GB
 
  
 
