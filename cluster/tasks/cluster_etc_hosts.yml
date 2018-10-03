@@ -1,0 +1,14 @@
+- name: Add CCMaster and CCSlave entries to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ hostvars[item].ansible_ssh_host }} {{ hostvars[item].hostname }}"
+    backup: yes
+  loop: "{{ query('inventory_hostnames', 'cluster_group') }}"
+
+- name: Add CCVip entry to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ hostvars[item].ansible_ssh_host }} {{ hostvars[item].hostname }}"
+    backup: yes
+  loop: "{{ query('inventory_hostnames', 'vip') }}"
+    

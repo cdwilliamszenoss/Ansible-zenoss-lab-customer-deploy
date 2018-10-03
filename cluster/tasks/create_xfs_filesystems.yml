@@ -1,10 +1,12 @@
 - name: Create isvcs XFS FileSystem
+  when: inventory_hostname in groups['master']
   filesystem:
     fstype: xfs
     dev: /dev/drbd0
     force: yes
 
 - name: Create Metadata XFS FileSystem
+  when: inventory_hostname in groups['master']
   filesystem:
     fstype: xfs
     dev: /dev/drbd1

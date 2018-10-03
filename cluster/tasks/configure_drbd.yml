@@ -22,6 +22,7 @@
   shell: drbdadm primary --force serviced-dfs
 
 - name: Synchronize DRBD
+  when: inventory_hostname in groups['master']
   command: bash -c 'grep -c "UpToDate/UpToDate" /proc/drbd'
   register: drbd_status
   until: drbd_status.stdout == "3"

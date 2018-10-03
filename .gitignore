@@ -4,4 +4,6 @@
 *.rpm
 *.idea
 *.retry
+*.vault
+*secrets.yml
 hosts
