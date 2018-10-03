@@ -4,6 +4,9 @@
 - name: Server hostname/ssh setup
   include: update_hosts_file_ssh_key.yml
 
+- name: Disable SELinux
+  include: disable_selinux.yml
+
 - name: Install system packages and updates
   include: install_system_updates.yml
 
@@ -13,5 +16,18 @@
 - name: Create Partitions
   include: create_partitions.yml
 
-- name: Disable SELinux
-  include: disable_selinux.yml
+- name: Create install directories
+  include: create_directories.yml
+
+- name: Install Zenoss
+  include: install_zenoss.yml
+
+- name: Copy config files
+  include: copy_config_files.yml
+
+- name: Create_thin_pools_docker
+  include: create_docker_thin_pools.yml
+
+- name: Import docker images
+  include: import_docker_images.yml
+

@@ -1,6 +1,6 @@
 ---
 - name: Apply common configuration to all hosts
-  hosts: [lab]
+  hosts: [hacluster]
   remote_user: root
 
   vars:

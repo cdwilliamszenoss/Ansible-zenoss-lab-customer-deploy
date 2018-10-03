@@ -9,13 +9,62 @@ Reqirements:
 
 - Downloaded files listed in files-required-site-[5-6].txt. Save the files to zenoss-lab-customer-deploy/common/files/install directory 
 
-- Server with Centos 7.4 OS
+- Server with Centos 7.* OS
 
-- 110 GB free space on first disk with MSDOS Partition Table (will create partitions starting at 24GB).  
+- Default lab installation: Will create partitions on hard-drive with an MSDOS Partition Table (create partitions beginning at 54GB).  
+
+NOTE:
+
+- There is a new HA cluster playbook and role for setting up an HA cluster running RM 6.1.2.
+
+- You will need to create an encrypted ansible vault file and variables file for the ha user credentials.  See the following example on how to set this up.
+
+---
+Step 1.
+
+Ansible Vault Configuration:
+
+- Create the vault within the zenoss-lab-customer-deploy directory:
+
+Example:
+
+ansible-vault create .vault
+
+- Enter the desired .vault password
+
+---
+Step 2.
+
+- Create a variables file that contains the ha user's credentials in 'key: value' format:
+
+Example:
+
+vi cluster/vars/secrets.yml
+
+hapassword: "superSekretPassword"
+
+---
+Step 3.
+
+- Encrypt the secrets.yml file with your ansible vault
+
+Example:
+
+ansible-vault encrypt cluster/var/secrets.yml
+
+- When prompted, enter the .vault password specified in Step 1.
+
+---
+Step 4.
+
+- Use the '--ask-vault-pass' option when running your playbook to decrypt the secret.yml variables for use in your playbook.
+
+Example:
+
+ansible-playbook -i hosts ha-site-6.1.2.yaml --ask-vault-pass
 
 
-- (In progress: Second hard drive or (3) partitions for the installation. )
-
+Standalone:
 
 ----
 
@@ -31,7 +80,7 @@ Install ansible on workstation.
 
 Example:
 
-yum install ansible
+yum -y install ansible
 
 ----
 
@@ -51,7 +100,7 @@ optional:
 
 Step 3.
 
-Update hosts (FQDN) name in inventory file (located in repository directory downloaded on workstation).
+Add the hostname (FQDN) to inventory file hosts file (in downloaded repository directory).
 
 Example:
 
@@ -59,7 +108,7 @@ vi $PATH/zenoss-lab-customer-deploy/hosts
 
 [standalone]
 
-example1.somedomain.com ansible_host=10.103.1.2
+example1.somedomain.com 
 
 ----
 
