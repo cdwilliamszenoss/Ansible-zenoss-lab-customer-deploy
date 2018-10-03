@@ -6,4 +6,3 @@
 *.retry
 *.vault
 *secrets.yml
-hosts
