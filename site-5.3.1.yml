@@ -9,7 +9,7 @@
      zenoss_passwd: $6$1uiZLcM8px06nO/A$oiP2xRk1i3iKLC.166gVlvVgYPH.spUqg8SIpdEWmOWDD4JofZwMWbPFQJgNzraGe0oX57DYPA7vG0MufrTn50
 
      # Packages
-     yum_mirror: yum-mirror-centos7.4.1708-serviced-1.4.2.x86_64.rpm
+     yum_mirror: yum-mirror-centos7.3.1611-serviced-1.4.0.x86_64.rpm
      resmgr_service: zenoss-resmgr-service-5.3.1-1.noarch.rpm 
      serviced: serviced-1.4.0-1.x86_64.rpm
      docker: docker-ce-17.03.1.ce-1.el7.centos.x86_64.rpm 
