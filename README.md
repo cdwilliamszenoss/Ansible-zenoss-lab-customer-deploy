@@ -20,6 +20,8 @@ NOTE:
 - You will need to create an encrypted ansible vault file and variables file for the ha user credentials.  See the following example on how to set this up.
 
 ---
+# HA -- INSTALL
+---
 Step 1.
 
 Ansible Vault Configuration:
@@ -63,10 +65,9 @@ Example:
 
 ansible-playbook -i hosts ha-site-6.1.2.yaml --ask-vault-pass
 
-
-Standalone:
-
-----
+---
+# STANDALONE -- INSTALL
+---
 
 Step 1. 
 
