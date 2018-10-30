@@ -105,7 +105,7 @@ Add the hostname (FQDN) to inventory file hosts file (in downloaded repository d
 
 Example:
 
-vi $PATH/zenoss-lab-customer-deploy/hosts
+vi $PATH/zenoss-lab-customer-deploy/hosts.example.file
 
 [standalone]
 
