@@ -63,7 +63,7 @@ Step 4.
 
 Example:
 
-ansible-playbook -i hosts ha-site-6.1.2.yaml --ask-vault-pass
+ansible-playbook -i hosts.example.file ha-site-6.1.2.yaml --ask-vault-pass
 
 ---
 # STANDALONE -- INSTALL
@@ -128,13 +128,13 @@ Select the version of Zenoss to install
 
 Example:
 
-ansible-playbook -i hosts site-5.3.3.yml
+ansible-playbook -i hosts.example.file site-5.3.3.yml
 
 or
 
 Example:
 
-ansible-playbook -i hosts site-6.1.1.yml
+ansible-playbook -i hosts.example.file site-6.1.1.yml
 
 
 Important Note:
