@@ -5,7 +5,7 @@
 - name: Create Extended Partition
   parted:
     device: /dev/{{hd_device}}
-    number: 3
+    number: "{{ extended_partid }}"
     part_start: "{{ partid_start_offset }}"
     part_end: "100%"
     part_type: extended

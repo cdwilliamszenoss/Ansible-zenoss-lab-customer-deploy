@@ -4,6 +4,12 @@
 - name: Server hostname/ssh setup
   include: update_hosts_file_ssh_key.yml
 
+
+# Perform a clean install 
+- name: Delete partitions
+  include: delete_partitions.yml
+  when: clean_install
+
 - name: Disable SELinux
   include: disable_selinux.yml
 

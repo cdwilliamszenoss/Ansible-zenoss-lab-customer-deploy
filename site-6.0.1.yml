@@ -26,9 +26,12 @@
      hd_device: xvda
  
      # Set "true" if using a second hard drive for the installation
-     use_second_hd_device: false
+     # use_second_hd_device: false
 
+     # Use clean_install to remove all packages and install a new version of Zenoss
+     clean_install: false
 
+     extended_partid: 3
      ha_metadata_partid: 5
      isvcs_partid: 6
      serviced_partid: 7
