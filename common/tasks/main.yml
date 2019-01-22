@@ -4,14 +4,20 @@
 - name: Server hostname/ssh setup
   include: update_hosts_file_ssh_key.yml
 
+
+# Perform a clean install 
+- name: Delete partitions
+  include: delete_partitions.yml
+  when: clean_install
+
 - name: Disable SELinux
   include: disable_selinux.yml
 
 - name: Install system packages and updates
   include: install_system_updates.yml
 
-- name: Copy Zenoss source files
-  include: copy_zenoss_source_files.yml
+#- name: Copy Zenoss source files
+#  include: copy_zenoss_source_files.yml
 
 - name: Create Partitions
   include: create_partitions.yml

@@ -28,6 +28,12 @@
   when: isvcs_pool_status.rc == 1
   
 
+-
+  shell: umount -f /dev/mapper/isvcs-isvcs
+  failed_when: false
+  no_log: True
+  notify: daemon-reload
+
 - name: Create isvcs XFS filesystem
   filesystem: 
     fstype: xfs
