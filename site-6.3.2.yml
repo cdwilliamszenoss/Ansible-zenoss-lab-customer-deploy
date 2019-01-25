@@ -1,0 +1,49 @@
+---
+- name: Apply common configuration to all hosts
+  hosts: [standalone]
+  remote_user: root
+
+  vars:
+     # Authentication
+     zenoss_user: zenoss
+     zenoss_passwd: $6$1uiZLcM8px06nO/A$oiP2xRk1i3iKLC.166gVlvVgYPH.spUqg8SIpdEWmOWDD4JofZwMWbPFQJgNzraGe0oX57DYPA7vG0MufrTn50
+
+     # Packages
+     yum_mirror: yum-mirror-centos7.4.1708-serviced-1.6.3.x86_64.rpm
+     resmgr_service: zenoss-resmgr-service-6.3.2-1.noarch.rpm
+     serviced: serviced-1.6.3-1.x86_64.rpm
+     docker: docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm
+     repo_name: zenoss-mirror
+
+     # Site specific configuration
+     # dns_server: 10.87.113.13
+     serviced_master: 1
+     serviced_dm_basesize: 30G
+     # net_iface: ifcfg-eth0
+
+     # set name of device for Zenoss install 
+     hd_device: xvda
+ 
+     # Set "true" if using a second hard drive for the installation
+     # use_second_hd_device: false
+
+     # Use clean_install to remove all packages and install a new version of Zenoss
+     clean_install: true
+
+     extended_partid: 3
+     ha_metadata_partid: 5
+     isvcs_partid: 6
+     serviced_partid: 7
+     docker_partid: 8
+
+     partid_start_offset:  55GB
+     partid_5_size_offset: 56GB     
+     partid_6_size_offset: 86GB
+     partid_7_size_offset: 116GB
+     partid_8_size_offset: 156GB
+
+ 
+
+  roles:
+  - common
+  - standalone
