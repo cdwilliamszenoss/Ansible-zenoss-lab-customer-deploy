@@ -4,5 +4,4 @@
     
 - name: Add master host to resource pool
   shell: serviced host add --register "{{ansible_hostname}}":4979 default
-
   
