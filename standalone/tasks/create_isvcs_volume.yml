@@ -40,6 +40,9 @@
     dev: /dev/mapper/isvcs-isvcs
     force: no
 
+- shell: xfs_repair -L /dev/mapper/isvcs-isvcs
+  failed_when: false
+  no_log: True
 
 - name: Update isvcs info in fstab
   lineinfile:
