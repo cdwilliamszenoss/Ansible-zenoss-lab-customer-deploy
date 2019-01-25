@@ -1,4 +1,8 @@
 ---
+- shell: /usr/bin/serviced service stop resmgr
+  failed_when: False
+  no_log: True
+
 - shell: /usr/bin/serviced template remove $(/usr/bin/serviced template list| awk 'NR > 1 {print $1}'); /usr/bin/serviced service remove resmgr
   failed_when: False
   no_log: True
