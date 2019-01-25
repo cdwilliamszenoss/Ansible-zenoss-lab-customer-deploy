@@ -5,13 +5,13 @@
   include: update_hosts_file_ssh_key.yml
 
 # Perform a clean install 
-- name: Delete partition
-  include: delete_partitions.yml
+- name: Delete application template
+  include: delete_application_template.yml
   when: clean_install
 
 # Perform a clean install 
-- name: Delete application template
-  include: delete_application_template.yml
+- name: Delete partition
+  include: delete_partitions.yml
   when: clean_install
      
 - name: Disable SELinux
