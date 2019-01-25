@@ -28,7 +28,7 @@
      # use_second_hd_device: false
 
      # Use clean_install to remove all packages and install a new version of Zenoss
-     clean_install: false
+     clean_install: true
 
      extended_partid: 3
      ha_metadata_partid: 5
