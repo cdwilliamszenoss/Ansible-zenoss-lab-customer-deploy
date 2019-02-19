@@ -33,6 +33,8 @@
      # set partid4 for docker pool
      docker_partid: 8
 
+     # Partid identifies which partition to use for service.
+     extended_partid: 3
 
      # Create partitions on system. Set size in GB. Offset partsize
      partid_start_offset:  54GB
