@@ -24,7 +24,6 @@
      clean_install: false
 
      # Partid identifies which partition to use for service.
-
      extended_partid: 3
 
      # Use ha_metadata for HA configuration. Default 1G
