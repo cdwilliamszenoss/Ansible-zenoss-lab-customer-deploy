@@ -19,6 +19,8 @@
      serviced_dm_basesize: 30G
      # net_iface: ifcfg-eth0
 
+     # Use clean_install to remove all packages and install a new version of Zenoss
+     clean_install: false
 
      # Partid identifies which partition to use for service.
 
