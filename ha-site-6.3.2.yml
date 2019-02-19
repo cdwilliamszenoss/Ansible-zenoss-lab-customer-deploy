@@ -6,7 +6,7 @@
   vars:
 
      # Packages
-     yum_mirror: yum-mirror-centos7.4.1708-serviced-1.5.0.x86_64.rpm
+     yum_mirror: yum-mirror-centos7.4.1708-serviced-1.6.3.x86_64.rpm
      resmgr_service: zenoss-resmgr-service-6.3.2-1.noarch.rpm 
      serviced: serviced-1.6.3-1.x86_64.rpm
      docker: docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm
