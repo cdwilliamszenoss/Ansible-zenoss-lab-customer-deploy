@@ -23,6 +23,7 @@
      clean_install: false
 
      # Partid identifies which partition to use for service.
+     extended_partid: 3
 
      # Use ha_metadata for HA configuration. Default 1G
      ha_metadata_partid: 5
@@ -32,9 +33,6 @@
      serviced_partid: 7
      # set partid4 for docker pool
      docker_partid: 8
-
-     # Partid identifies which partition to use for service.
-     extended_partid: 3
 
      # Create partitions on system. Set size in GB. Offset partsize
      partid_start_offset:  54GB
