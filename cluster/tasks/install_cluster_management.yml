@@ -5,8 +5,8 @@
   register: rpm_result
 
 - name: Install All Cluster RPMs
-  yum:
-    name: "{{rpm_result.files | map(attribute='path')|list}}"
+  shell: yum -y localinstall "{{item.path}}"
+  with_items: "{{rpm_result.files}}"   
 
 - name: Install Pacemaker resource agents
   yum:
