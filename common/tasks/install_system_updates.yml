@@ -17,11 +17,9 @@
   register: system_update
 
 - name: Install ntp / nfs
-  yum: name="{{item}}" state=latest
-  with_items:
-  - "ntp"
-  - "nfs-utils"
-  - "libnfsidmap"
+  yum:
+    name: ['ntp','nfs-utils','libnfsidmap']
+    state: latest
 
 - name: Start and enble ntpd / nfs-server
   service: name="{{item}}" state=started enabled=yes
@@ -33,9 +31,9 @@
   - "nfs-idmapd"
 
 - name: Install yum utils
-  yum: name="{{item}}" state=latest
-  with_items:
-  - "yum-utils"
+  yum: 
+    name: ['yum-utils'] 
+    state: latest
 
 - name: Install elrepo GPG key
   rpm_key:
