@@ -47,7 +47,6 @@
   file: path="{{item}}" state=absent
   with_items:
   - "/var/log/journal"
-  - "/opt/serviced/var/backups"
   - "/opt/serviced/var/isvcs"
   - "/var/log/serviced"
   - "/var/lib/docker"
