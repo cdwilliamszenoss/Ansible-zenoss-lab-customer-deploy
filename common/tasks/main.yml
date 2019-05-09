@@ -10,7 +10,7 @@
   when: clean_install
 
 # Perform a clean install 
-- name: Delete partition
+- name: Delete directories and partitions 
   include: delete_partitions.yml
   when: clean_install
      
