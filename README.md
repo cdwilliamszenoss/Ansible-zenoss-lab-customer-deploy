@@ -1,15 +1,19 @@
 
-Control Center / Resource Manager
+Control Center / Resource Manager Installataion Tool
 
 5.x.x and 6.x.x Zenoss Resource Manager.
 
 Reqirements:
 
-- SSH PUBLIC KEY AUTHENTICATION required for installation. (You should be able to connect to the server via ssh without a password)
+- Ansible installed on workstation ( Linux/RedHat workstation)
 
-- Downloaded files listed in files-required-site-[5-6].txt. Save the files to zenoss-lab-customer-deploy/common/files/install directory 
+- SSH PUBLIC KEY AUTHENTICATION required for installation. (You should be able to connect to the server using ssh without a password)
 
-- Server with Centos 7.* OS
+- Clone repository to local workstation.  
+
+- Downloaded files listed in files-required-site-[5-6].txt from Zenoss. Copy installation files to the zenoss-lab-customer-deploy/common/files/install/ directory 
+
+- Server with RedHat/Centos 7.* OS
 
 - Default lab installation: Will create partitions on hard-drive with an MSDOS Partition Table (create partitions beginning at 54GB).  
 
@@ -18,6 +22,89 @@ NOTE:
 - There is a new HA cluster playbook and role for setting up an HA cluster running RM 6.1.2.
 
 - You will need to create an encrypted ansible vault file and variables file for the ha user credentials.  See the following example on how to set this up.
+
+
+---
+# STANDALONE -- INSTALL
+---
+
+Step 1. 
+
+Install Anisble:
+
+yum -y install ansible
+
+
+Step 2.
+
+Generate SSH Key without a password on workstation for user. Accept defaults:
+
+ssh-keygen
+
+
+Step 3.
+
+Clone repository to workstation:
+
+git clone https://github.com/cdwilliamszenoss/zenoss-lab-customer-deploy.git
+
+
+Step 4.
+
+Copy files listed in files-required-site-5.txt or files-required-site-6.txt to the install directory.
+(located in cloned repo on workstation)
+
+$PATH/zenoss-lab-customer-deploy/common/files/install 
+
+
+Step 5.
+
+Select the version of Zenoss to install
+
+Example:
+
+ansible-playbook -i hosts.example.file site-5.3.3.yml
+
+or
+
+ansible-playbook -i hosts.example.file site-6.4.0.yml
+
+
+Step 6.
+
+Modify the playbook and set drive where Zenoss will be installed. Edit the site-6.1.1.yml or site-5.3.3.yml and set the harddrive device name.
+
+Example: set name of device for Zenoss install 
+
+hd_device: xvda
+
+
+optional:
+
+- Set partition size. (Use the offset to determine start/end of partition)
+
+ 
+Step 7.
+
+Modify the inventory file hosts file and set the hostname and IP address of server. Edit the [standalone] group section 
+
+Example:
+
+vi $PATH/zenoss-lab-customer-deploy/hosts.example.file
+
+[standalone]
+
+example1.somedomain.com 
+
+----
+
+
+Important Note:
+     
+     This script will NOT UPGRADE an existing installation.
+
+
+
 
 ---
 # HA -- INSTALL
@@ -64,82 +151,6 @@ Step 4.
 Example:
 
 ansible-playbook -i hosts.example.file ha-site-6.1.2.yaml --ask-vault-pass
-
----
-# STANDALONE -- INSTALL
----
-
-Step 1. 
-
-Download repository to workstation. 
-
-Example:
-
-git clone https://github.com/cdwilliamszenoss/zenoss-lab-customer-deploy.git
-
-Install ansible on workstation.
-
-Example:
-
-yum -y install ansible
-
-----
-
-Step 2.
-
-Default : Using the script to create partitions. 
-
-Modify the site-6.1.1.yml or site-5.3.3.yml 
-- Set the harddrive device name
-
-optional:
-
-- Set partition size. (Use the offset to determine start/end of partition)
-
- 
-----
-
-Step 3.
-
-Add the hostname (FQDN) to inventory file hosts file (in downloaded repository directory).
-
-Example:
-
-vi $PATH/zenoss-lab-customer-deploy/hosts.example.file
-
-[standalone]
-
-example1.somedomain.com 
-
-----
-
-Step 4.
-
-Copy files listed in files-required-site-5.txt or files-required-site-6.txt to the install directory.
-(located in repository directory downloaded on workstation)
-
-$PATH/zenoss-lab-customer-deploy/common/files/install 
-
-----
-
-Step 5.
-
-Select the version of Zenoss to install
-
-Example:
-
-ansible-playbook -i hosts.example.file site-5.3.3.yml
-
-or
-
-Example:
-
-ansible-playbook -i hosts.example.file site-6.1.1.yml
-
-
-Important Note:
-     
-     This script will NOT UPGRADE an existing installation.
 
 
 
