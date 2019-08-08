@@ -5,7 +5,7 @@ Control Center / Resource Manager Installataion Tool
 
 Reqirements:
 
-- Ansible installed on workstation ( Linux/RedHat workstation)
+- Install Ansible on workstation ( Linux/RedHat workstation)
 
 - SSH PUBLIC KEY AUTHENTICATION required for installation. (You should be able to connect to the server using ssh without a password)
 
