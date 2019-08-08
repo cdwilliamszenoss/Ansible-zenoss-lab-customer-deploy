@@ -34,6 +34,7 @@ Install Anisble:
 
 yum -y install ansible
 
+---
 
 Step 2.
 
@@ -41,6 +42,7 @@ Generate SSH Key without a password on workstation for user. Accept defaults:
 
 ssh-keygen
 
+---
 
 Step 3.
 
@@ -48,6 +50,7 @@ Clone repository to workstation:
 
 git clone https://github.com/cdwilliamszenoss/zenoss-lab-customer-deploy.git
 
+---
 
 Step 4.
 
@@ -56,6 +59,7 @@ Copy files listed in files-required-site-5.txt or files-required-site-6.txt to t
 
 $PATH/zenoss-lab-customer-deploy/common/files/install 
 
+---
 
 Step 5.
 
@@ -69,6 +73,7 @@ or
 
 ansible-playbook -i hosts.example.file site-6.4.0.yml
 
+---
 
 Step 6.
 
@@ -83,6 +88,7 @@ optional:
 
 - Set partition size. (Use the offset to determine start/end of partition)
 
+---
  
 Step 7.
 
