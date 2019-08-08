@@ -22,7 +22,7 @@
      # net_iface: ifcfg-eth0
 
      # set name of device for Zenoss install 
-     hd_device: xvdb
+     hd_device: xvda
  
      # Set "true" if using a second hard drive for the installation
      # use_second_hd_device: false
@@ -30,17 +30,17 @@
      # Use clean_install to remove all packages and install a new version of Zenoss
      clean_install: true
 
-     extended_partid: 5
-     ha_metadata_partid: 1
-     isvcs_partid: 2
-     serviced_partid: 3
-     docker_partid: 4
+     extended_partid: 3
+     ha_metadata_partid: 5
+     isvcs_partid: 6
+     serviced_partid: 7
+     docker_partid: 8
 
-     partid_start_offset:  1GB
-     partid_5_size_offset: 2GB     
-     partid_6_size_offset: 42GB
-     partid_7_size_offset: 82GB
-     partid_8_size_offset: 120GB
+     partid_start_offset:  55GB
+     partid_5_size_offset: 56GB     
+     partid_6_size_offset: 86GB
+     partid_7_size_offset: 116GB
+     partid_8_size_offset: 156GB
 
  
 
