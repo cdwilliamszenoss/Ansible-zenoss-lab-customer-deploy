@@ -63,23 +63,13 @@ $PATH/zenoss-lab-customer-deploy/common/files/install
 
 Step 5.
 
-Select the version of Zenoss to install
+Select the version of Zenoss to install. Edit the playbook (ymal file) and set the drive where Zenoss will be installed. 
 
 Example:
 
-ansible-playbook -i hosts.example.file site-5.3.3.yml
+vi  $PATH/zenoss-lab-customer-deploy/site-6.4.0.yml
 
-or
-
-ansible-playbook -i hosts.example.file site-6.4.0.yml
-
----
-
-Step 6.
-
-Modify the playbook and set drive where Zenoss will be installed. Edit the site-6.1.1.yml or site-5.3.3.yml and set the harddrive device name.
-
-Example: set name of device for Zenoss install 
+Set the hd_device variable to the drive where Zenoss will be installed 
 
 hd_device: xvda
 
@@ -90,7 +80,7 @@ optional:
 
 ---
  
-Step 7.
+Step 6.
 
 Modify the inventory file hosts file and set the hostname and IP address of server. Edit the [standalone] group section 
 
@@ -104,6 +94,18 @@ example1.somedomain.com
 
 ----
 
+Step 7.
+
+Deploy Zenoss Infrastracture Services using playbook. Change into the $PATH/zenoss-lab-customer-deploy directory and execute playbook.
+
+Example:
+
+cd $PATH/zenoss-lab-customer-deploy/
+ansible-playbook -i hosts.example.file site-6.4.0.yml
+
+
+
+----
 
 Important Note:
      
