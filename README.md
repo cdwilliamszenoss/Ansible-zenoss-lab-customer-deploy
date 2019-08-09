@@ -69,7 +69,7 @@ Example:
 
 vi  $PATH/zenoss-lab-customer-deploy/site-6.4.0.yml
 
-Set the hd_device variable to the drive where Zenoss will be installed 
+- Set the hd_device variable to the drive where Zenoss will be installed 
 
 hd_device: xvda
 
