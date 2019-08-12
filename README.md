@@ -105,6 +105,8 @@ Deploy Zenoss Infrastracture Services using playbook. Change into the $PATH/zeno
 Example:
 
 cd $PATH/zenoss-lab-customer-deploy/
+
+
 ansible-playbook -i hosts.example.file site-6.4.0.yml
 
 
