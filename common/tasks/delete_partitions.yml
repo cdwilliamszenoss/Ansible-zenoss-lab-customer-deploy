@@ -46,13 +46,13 @@
 - name: Delete directories on system
   file: path="{{item}}" state=absent
   with_items:
-  - "/var/log/journal"
-  - "/opt/serviced/var/isvcs"
-  - "/var/log/serviced"
-  - "/var/lib/docker"
-  - "/etc/systemd/system/docker.service.d"
-  - "/etc/systemd/system/nfs-server.service.d"
-  - "/tmp/downloads"
+  - "/var/log/journal/"
+  - "/opt/serviced/var/isvcs/"
+  - "/var/log/serviced/"
+  - "/var/lib/docker/"
+  - "/etc/systemd/system/docker.service.d/"
+  - "/etc/systemd/system/nfs-server.service.d/"
+  - "/tmp/downloads/"
 
 
   notify: daemon-reload
