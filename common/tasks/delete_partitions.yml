@@ -11,7 +11,7 @@
   failed_when: False
   no_log: True
  
-- service: name=docker-ce state=stopped
+- service: name=docker state=stopped
   failed_when: False
   no_log: True
 
