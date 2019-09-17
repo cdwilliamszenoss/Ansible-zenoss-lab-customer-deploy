@@ -3,7 +3,14 @@
   yum:
     name: "/root/install/{{yum_mirror}}"
     state: present
-    
+
+- name: Install "{{containerd}}"
+  yum:
+    enablerepo: "{{repo_name}}"
+    name: "/opt/zenoss-repo-mirror/{{containerd}}"
+    state: present
+  when: containerd is defined
+
 - name: Install "{{docker}}"
   yum:
     # disablerepo: "*"
