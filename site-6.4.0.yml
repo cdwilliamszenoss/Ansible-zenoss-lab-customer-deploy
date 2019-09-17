@@ -13,6 +13,7 @@
      yum_mirror:  yum-mirror-centos7.6.1810-serviced-1.6.5.x86_64.rpm
      resmgr_service: zenoss-resmgr-service-6.4.0-1.noarch.rpm
      serviced: serviced-1.6.5-1.x86_64.rpm
+     containerd: containerd.io-1.2.5-3.1.el7.x86_64.rpm
      docker: docker-ce-18.09.6-3.el7.x86_64.rpm
      repo_name: zenoss-mirror
 
