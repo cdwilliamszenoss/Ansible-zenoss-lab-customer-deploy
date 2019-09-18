@@ -78,7 +78,7 @@ zenoss-resmgr-service-6.4.0-1.noarch.rpm
 
 
 
-Resource Manager 6.4.0
+Resource Manager 6.4.1
 
 install-zenoss-hbase_24.0.8.run
 install-zenoss-isvcs-zookeeper_v11.run
