@@ -32,6 +32,14 @@
   failed_when: False
   no_log: True
 
+- yum: name=docker-ce-cli state=absent
+  failed_when: False
+  no_log: True
+
+- yum: name=containerd.io state=absent
+  failed_when: False
+  no_log: True
+
 - yum: name=ntpd state=absent
   failed_when: False
   no_log: True

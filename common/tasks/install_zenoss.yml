@@ -4,7 +4,7 @@
     name: "/root/install/{{yum_mirror}}"
     state: present
 
-- name: Install "{{containerd}}"
+- name: Install "containerd.io"
   yum:
     enablerepo: "{{repo_name}}"
     name: "/opt/zenoss-repo-mirror/{{containerd}}"
